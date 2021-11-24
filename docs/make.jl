@@ -4,7 +4,8 @@ DocMeta.setdocmeta!(ComputacionCientificaEnJulia, :DocTestSetup,
                    :(using ComputacionCientificaEnJulia); recursive=true)
 
 makedocs(
-    format = Documenter.HTML(prettyurls=haskey(ENV, "GITHUB_ACTIONS")),
+    format = Documenter.HTML(prettyurls=haskey(ENV, "GITHUB_ACTIONS"),
+                             assets = ["assets/aligned.css"]),
     sitename = "Computación Científica en Julia",
     doctest = false,
     strict = false,
