@@ -12,7 +12,8 @@ makedocs(
     pages = [
         "Generalidades" => "index.md",
         "Funciones" => Any["Definición" => "funciones/funciones.md",
-                           "Ejemplos" => "funciones/ejemplos.md"]
+                           "Ejemplos" => "funciones/ejemplos.md",
+                           "Types" => "funciones/types.md"]
             ]
 )
 
