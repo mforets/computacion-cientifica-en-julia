@@ -1,0 +1,1 @@
+# Gráficos para publicaciones

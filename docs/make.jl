@@ -50,7 +50,7 @@ makedocs(
             "Programación paralela"=>"patrones/programacion_paralela.md",
             "Anti-patrones"=>"patrones/antipatrones.md"],
         "Librerías" => Any["Introducción"=>"ecosistema/intro.md",
-            "Gráficos para publicaciones"=>"ecosistema/graficos_pub.md"
+            "Gráficos para publicaciones"=>"ecosistema/graficos_pub.md",
             "Optimización con JuMP"=>"ecosistema/jump.md",
             "Modelado y computación científica con SciML"=>"ecosistema/sciml.md",
             "Aprendizaje automático con Flux"=>"ecosistema/flux.md"],
