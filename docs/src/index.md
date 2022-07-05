@@ -27,6 +27,30 @@ oral abierta a otros estudiantes del curso con preguntas de los docentes.
 
 **Ecosistema de Julia para computación científica.** Conceptos avanzados de gráficos y generación de gráficos para publicaciones. Paquetes para trabajar con datos, como data frames, y aprendizaje estadístico. Paquetes para resolver sistemas dinámicos, e.g. ecuaciones diferenciales ordinarias y ecuaciones en derivadas parciales. Paquetes para modelado y resolución de problemas de optimización matemática. Nota: los contenidos de esta parte son indicativos y se contempla adaptarlos a los intereses de los/las estudiantes.
 
+## Cronograma
+
+|Semana|Fecha|Temas|Entregable|
+|------|------|------|------|
+|1 |1/08 al  |Alcance del curso. Entorno de desarrollo.|-|
+|2 | |Primeros pasos en Julia.||
+|3 | |Computación numérica. Computación simbólica.|1|
+|4 | |Fundamentos de Julia.||
+|5 | |||
+|6 | |||
+|7 | |Patrones de diseño.||
+|8 | |||
+|9 | |||
+|10 | |Librerías.||
+|11 | |||
+|12 | |||
+|13 | ||Proyecto.|
+|14 | |||
+
+Notas:
+
+- La columna de semana se refiere al numero de semanas transcurridas respecto delinicio del curso.
+- El cronograma es tentativo y lo iremos actualizando con el correr del curso.
+
 ## Bibliografía
 
 - Hands-On Design Patterns and Best Practices with Julia: Proven solutions to common problems in software design for Julia 1. x. Kwong, T.  Packt Publishing Ltd, 2020.  ISBN: 9781838648817
