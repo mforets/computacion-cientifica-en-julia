@@ -1,6 +1,6 @@
-# Material del curso "Computación Científica en Julia"
+# Material del curso *Computación Científica en Julia*
 
-Version online [aquí](https://mforets.github.io/computacion-cientifica-en-julia/dev/).
+Versión online [aquí](https://mforets.github.io/computacion-cientifica-en-julia/dev/).
 
 ## Ayuda
 
