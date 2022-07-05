@@ -4,4 +4,4 @@
 
 ### Formato automático
 
-## Control de revision con git
+## Control de revisión con git
