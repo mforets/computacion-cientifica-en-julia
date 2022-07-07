@@ -3,3 +3,7 @@
 ## Matrices esparsas
 
 ## Matrices estaticas
+
+---
+
+## Ejercicios

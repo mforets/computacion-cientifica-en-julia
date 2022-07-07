@@ -1,0 +1,3 @@
+# Patrones para performances
+
+## Profiling
