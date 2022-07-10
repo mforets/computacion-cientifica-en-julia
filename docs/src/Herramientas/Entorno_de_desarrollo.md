@@ -135,7 +135,7 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 - [Documentacion de Julia](https://docs.julialang.org/en/v1/)
 - [Foro de Julia](https://discourse.julialang.org/)
-
+- [Introduction to version control with Git](https://coderefinery.github.io/git-intro/)
 
 ---
 

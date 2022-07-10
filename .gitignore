@@ -25,6 +25,11 @@ Manifest.toml
 
 # System specific
 .DS_Store
+
+# VSCode
 .JuliaFormatter.toml
 .vscode/launch.json
 .vscode/settings.json
+
+# Jupyter
+*.ipynb_checkpoints
