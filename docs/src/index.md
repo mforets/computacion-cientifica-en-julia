@@ -31,16 +31,16 @@ oral abierta a otros estudiantes del curso con preguntas de los docentes.
 
 |Semana|Fecha|Temas|Entregable|
 |------|------|------|------|
-|1 |1/08 al  |Alcance del curso. Entorno de desarrollo.|-|
-|2 | |Primeros pasos en Julia.||
-|3 | |Computación numérica. Computación simbólica.|1|
-|4 | |Fundamentos de Julia.||
-|5 | |||
-|6 | |||
-|7 | |Patrones de diseño.||
-|8 | |||
-|9 | |Librerías.||
-|10 | |||
+|1 |1/08 al  |Alcance del curso. Entorno de desarrollo.|1|
+|2 | |Primeros pasos en Julia.|2|
+|3 | |Computación numérica. Computación simbólica.|3|
+|4 | |Fundamentos de Julia.|4|
+|5 | ||5|
+|6 | ||6|
+|7 | |Patrones de diseño.|7|
+|8 | ||8|
+|9 | |Librerías.|9|
+|10 | ||10|
 |11 | |Proyecto.||
 |12 | |||
 |13 | |||
