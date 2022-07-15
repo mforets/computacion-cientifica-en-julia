@@ -39,11 +39,11 @@ oral abierta a otros estudiantes del curso con preguntas de los docentes.
 |6 | |||
 |7 | |Patrones de diseño.||
 |8 | |||
-|9 | |||
-|10 | |Librerías.||
-|11 | |||
+|9 | |Librerías.||
+|10 | |||
+|11 | |Proyecto.||
 |12 | |||
-|13 | ||Proyecto.|
+|13 | |||
 |14 | |||
 
 Notas:
