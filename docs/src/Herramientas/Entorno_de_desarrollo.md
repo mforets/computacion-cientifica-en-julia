@@ -60,6 +60,8 @@ Trabaja con ramas (`branches`), que permiten generar proyectos divergentes de un
 
 Al trabajar de forma distribuida, los clientes generan una réplica exacta del proyecto en su computadora local. Esto evita la pérdida de avances frente a problemas de conectividad con la red, como sucede en los sistemas centralizados.
 
+Además, permite la reproducibilidad del paquete desarrollado, para proporcionar su versión exacta en publicaciones y poder así reproducir los resultados reportados, o si se detectaron bugs, detectar cuándo fueron introducidas.
+
 ### Git y GitHub
 
 Git es una herramienta de código abierto diseñada por Linus Torvald (creador de Linux), sobre el sistema operativo Linux, para el control de versiones de código.
@@ -213,17 +215,50 @@ y los veremos ordenados según la fecha de modificación (primero los más recie
 
 (Previamente nos debimos haber movido a la `branch` `master`: `$ git checkout master`).
 
+Con el siguiente comando creamos un alias para la instrucción que nos permite visualizar el grafo de modificaciones en el repo:
+
+```
+$ git config --global alias.graph "log --all --graph --decorate --oneline"
+```
+
+Ahora, haciendo `$ git graph`, tendremos una representación de la estructura de `branches` o grafo del repo, y junto a cada `commit` se muestra una abreviación del `hash` correspondiente (7 caracteres en lugar del total de 40 caracteres).
+
 ### Comandos útiles
 
 Una lista de los comandos básicos de git se puede encontrar en [este link](https://es.wikipedia.org/wiki/Git#%C3%93rdenes_b%C3%A1sicas).
 
 
 
+### Ejercicios:
 
+1. ¿Cuál/es de los siguientes combos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
 
+```
+$ git branch new-branch
+$ git add file.txt
+$ git commit
+```
 
+```
+$ git add file.txt
+$ git branch new-branch
+$ git checkout new-branch
+$ git commit
+```
 
+```
+$ git checkout -b new-branch
+$ git add file.txt
+$ git commit
+```
 
+```
+$ git checkout new-branch
+$ git add file.txt
+$ git commit
+```
+
+2. 
 
 
 
