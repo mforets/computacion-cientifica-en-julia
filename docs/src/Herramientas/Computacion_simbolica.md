@@ -1,5 +1,7 @@
 # Computación simbólica
 
+¿Biblio?
+
 ## Expresiones simbólicas
 
 ## Cálculo simbólico
