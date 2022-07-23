@@ -229,9 +229,11 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 
 
-### Ejercicios:
+## Ejercicios
 
-1. ¿Cuál/es de los siguientes combos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
+#### 1.1. Comandos de git
+
+(a) ¿Cuál/es de los siguientes combos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
 
 ```
 $ git branch new-branch
@@ -258,10 +260,26 @@ $ git add file.txt
 $ git commit
 ```
 
-2. 
+(b) Repetir las partes anteriores utilizando la interfaz de git que viene incorporada en VSCode. Recomendamos también probar la extensión GitLens.
 
+#### 1.2. Creación de un repositorio
 
+Crear un nuevo repositorio con su usuario en github (o gitlab, ya sea `gitlab.com` o la instancia de fing, `gitlab.fing.edu.uy`) de nombre `ccj`.
 
+(a) Commitear el archivo `hola.jl` generado en el principio de esta sección.
+
+(b) Crear una carpeta de nombre `Entregable_1` que contenga el archivo `Entregable_1.jl` con el siguiente contenido:
+
+```julia
+module Entregable_1
+    const CI = "cedula-sin-puntos-ni-guion"
+
+    doble(x) = 2x
+
+    export double
+end
+```
+cambiando el contenido de la constante `CI` por su número de cédula.
 
 
 

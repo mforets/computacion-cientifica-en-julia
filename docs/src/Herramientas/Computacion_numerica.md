@@ -104,11 +104,14 @@ El problema de $f(x)$ es mal-condicionado (*ill-conditioned*) cuando $\kappa_f (
 
 ## Aplicaciones
 
+## Referencias
+
+
 ---
 
 ## Ejercicios
 
-#### Polinomios
+#### 3.1. Polinomios
 
 Consideremos el polinomio univariado $P_k \in \mathbb{R}[x]$ dado por
 

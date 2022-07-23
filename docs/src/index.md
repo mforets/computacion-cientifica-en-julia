@@ -29,22 +29,22 @@ oral abierta a otros estudiantes del curso con preguntas de los docentes.
 
 ## Cronograma
 
-|Semana|Fecha|Temas|Entregable|
+|Semana|Clases|Temas|Entregable|
 |------|------|------|------|
-|1 |1/08 al  |Alcance del curso. Entorno de desarrollo.|1|
-|2 | |Primeros pasos en Julia.|2|
-|3 | |Computación numérica. Computación simbólica.|3|
-|4 | |Fundamentos de Julia.|4|
-|5 | ||5|
-|6 | ||6|
-|7 | |Patrones de diseño.|7|
-|8 | ||8|
-|9 | |Librerías.|9|
-|10 | ||10|
-|11 | |Proyecto.||
-|12 | |||
-|13 | |||
-|14 | |||
+|1 |02/08 05/08 |Alcance del curso. Entorno de desarrollo.|1|
+|2 |09/08 12/08 |Primeros pasos en Julia.|2|
+|3 |16/08 19/08 |Computación numérica. Computación simbólica.|3|
+|4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.|4|
+|5 |30/08 02/09 |Gestor de paquetes. Estructuras de datos. Funciones.|5|
+|6 |06/09 09/09 |Mecanismos de evaluación. Metaprogramación.|6|
+|7 |13/09 16/09 |Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez.|7|
+|8 |20/09 23/09 |Programación genérica. Programación paralela. Anti-patrones.|8|
+|9 |27/09 30/09 |Librerías. Gráficos para publicaciones. Optimización. Modelado y simulaciones numéricas.|9|
+|10 |04/10 07/10 |Aprendizaje automático.|10|
+|11 |11/10 14/10 |Proyecto.|-|
+|12 |18/10 21/10 ||-|
+|13 |25/10 28/10 ||-|
+|14 |01/11 04/11 ||-|
 
 Notas:
 
@@ -52,6 +52,8 @@ Notas:
 - El cronograma es tentativo y lo iremos actualizando con el correr del curso.
 
 ## Bibliografía
+
+A continuación se lista la bibliografía principal. Por otro lado, cada sección incluye referencias específicas ya sea a textos, a páginas web o a paquetes de Julia.
 
 - Hands-On Design Patterns and Best Practices with Julia: Proven solutions to common problems in software design for Julia 1. x. Kwong, T.  Packt Publishing Ltd, 2020.  ISBN: 9781838648817
 

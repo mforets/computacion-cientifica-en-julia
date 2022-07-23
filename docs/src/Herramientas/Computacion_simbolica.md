@@ -8,4 +8,8 @@
 
 ## Aplicaciones
 
+---
+
 ## Ejercicios
+
+#### 4.1.

@@ -27,7 +27,7 @@ A continuación se da una pantallazo de distintos aspectos del lenguaje desde un
 
 ## Ejercicios
 
-#### Ordenamiento de burbuja
+#### 2.1. Ordenamiento de burbuja
 
 En este ejercicio se trabajará con uno de los algoritmos de ordenamiento más sencillos, el [algoritmo de ordenamiento de burbuja](https://es.wikipedia.org/wiki/Ordenamiento_de_burbuja) (bubble sort).
     
@@ -41,7 +41,7 @@ En este ejercicio se trabajará con uno de los algoritmos de ordenamiento más s
 
 (e) Comparar el resultado de la parte anterior con los valores esperados de forma teórica.
 
-#### Complejos
+#### 2.2. Complejos
 
 En su forma polar, los números complejos se representan con un módulo $r \geq 0$ y un argumento o ángulo polar $\varphi \in [-\pi, \pi)$, defininiendo así a $z = re^{i\varphi}$ en el plano complejo (diagrama de Argand). 
 
