@@ -228,6 +228,13 @@ Ahora, haciendo `$ git graph`, tendremos una representación de la estructura de
 Una lista de los comandos básicos de git se puede encontrar en [este link](https://es.wikipedia.org/wiki/Git#%C3%93rdenes_b%C3%A1sicas).
 
 
+## Referencias
+
+- [Documentacion de Julia](https://docs.julialang.org/en/v1/)
+- [Foro de Julia](https://discourse.julialang.org/)
+- [Introduction to version control with Git](https://coderefinery.github.io/git-intro/)
+
+---
 
 ## Ejercicios
 
@@ -280,16 +287,3 @@ module Entregable_1
 end
 ```
 cambiando el contenido de la constante `CI` por su número de cédula.
-
-
-
-
-## Referencias
-
-- [Documentacion de Julia](https://docs.julialang.org/en/v1/)
-- [Foro de Julia](https://discourse.julialang.org/)
-- [Introduction to version control with Git](https://coderefinery.github.io/git-intro/)
-
----
-
-## Ejercicios
