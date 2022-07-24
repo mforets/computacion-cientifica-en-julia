@@ -1,15 +1,14 @@
 # Computación simbólica
 
-¿Biblio?
-
 ## Expresiones simbólicas
 
-## Cálculo simbólico
+## Iteradores
 
-## Aplicaciones
+## Diferenciación automática
+
 
 ---
 
 ## Ejercicios
 
-#### 4.1.
+#### 4.1. 

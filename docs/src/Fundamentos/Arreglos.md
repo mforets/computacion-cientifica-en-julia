@@ -2,7 +2,7 @@
 
 ## Matrices esparsas
 
-## Matrices estaticas
+## Matrices estáticas
 
 ---
 

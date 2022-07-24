@@ -1,1 +1,5 @@
-# Tipos de datos basicos
+# Tipos de datos básicos
+
+--
+
+## Ejercicios

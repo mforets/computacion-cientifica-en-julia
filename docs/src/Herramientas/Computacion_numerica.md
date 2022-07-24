@@ -102,7 +102,7 @@ El problema de $f(x)$ es mal-condicionado (*ill-conditioned*) cuando $\kappa_f (
 
 ¿Biblio?
 
-## Aplicaciones
+## Descenso por gradiente
 
 ## Referencias
 

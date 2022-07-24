@@ -5,3 +5,7 @@
 ## Tipos concretos
 
 ## Tipos parametricos
+
+--
+
+## Ejercicios
