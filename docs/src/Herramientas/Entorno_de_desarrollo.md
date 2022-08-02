@@ -50,7 +50,12 @@ Empecemos por utilizar Julia como una calculadora...
 
 ## VSCode
 
-### Formato automático
+Se puede descargar VSCode para distintos sistemas [aqui](https://code.visualstudio.com/download). 
+
+!!! note "Alternativa: VSCodium"
+    Existe una version del software llamada [VSCodium](https://vscodium.com/), donde el archivo binario se desarrolla de manera abierta, otorgando asi un mayor control a los usuarios relativo a la telemetria / uso de datos.
+
+Instrucciones sobre la extension de Julia para VSCode se encuentran [aqui](https://www.julia-vscode.org/), en particular ver la documentacion de [Julia in VSCode](https://www.julia-vscode.org/docs/stable/).
 
 ## Control de revisión con git
 
@@ -240,40 +245,40 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 #### 1.1. Comandos de git
 
-(a) ¿Cuál/es de los siguientes combos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
+(a) Ejecutar los siguientes juegos de comandos y comparar los resultados de cada uno. En particular, ¿Cuál/es de los siguientes conjuntos de comandos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
 
-```
+```bash
 $ git branch new-branch
 $ git add file.txt
 $ git commit
 ```
 
-```
+```bash
 $ git add file.txt
 $ git branch new-branch
 $ git checkout new-branch
 $ git commit
 ```
 
-```
+```bash
 $ git checkout -b new-branch
 $ git add file.txt
 $ git commit
 ```
 
-```
+```bash
 $ git checkout new-branch
 $ git add file.txt
 $ git commit
 ```
 
-(b) Repetir las partes anteriores utilizando la interfaz de git que viene incorporada en VSCode. Recomendamos también probar la extensión GitLens.
+(b) Repetir la pregunta anterior utilizando la interfaz de git que viene incorporada en VSCode. Recomendamos probar la extensión llamada GitLens.
 
 #### 1.2. Creación de un repositorio
 
-Crear un nuevo repositorio con su usuario en github (o gitlab, ya sea `gitlab.com` o la instancia de fing, `gitlab.fing.edu.uy`) de nombre `ccj`.
+Crear un nuevo repositorio con su usuario en github (si no tienen, crearse uno). Aquellos que asi lo deseen pueden usar gitlab (`gitlab.com`) o la instancia de fing (`gitlab.fing.edu.uy`). Sugerimos que el repo se llame `ccj`.
 
-(a) Commitear el archivo `hola.jl` generado en el principio de esta sección.
+(a) Hacer un commit con el archivo `hola.jl` generado en el principio de esta sección.
 
 (b) Crear una carpeta de nombre `Entregable_1` que contenga el archivo `Entregable_1.jl` con el siguiente contenido:
 
@@ -288,4 +293,8 @@ end
 ```
 cambiando el contenido de la constante `CI` por su número de cédula.
 
-(c) Zippear la carpeta `Entregable_1` y subirlo a la actividad correspondiente en Eva como se indicará en clase.
+(c) Zippear la carpeta `Entregable_1` y subirlo a la actividad correspondiente en Eva como se indicará en clase. Si aun no tiene acceso a Eva, enviar el entregable a los docentes del curso por email.
+
+#### 1.3. Creación de un pull request en Github
+
+Hacer un fork del repositorio con las notas del curso (`github.com/mforets/computacion-cientifica-en-julia`) y realizar un commit agregando su nombre en la pagina de `Proyecto`. Si tiene un titulo tentativo para su trabajo, incluirlo, de lo contrario dejar una cruz (`x`) en la columna correspondiente.
