@@ -2,4 +2,4 @@
 
 |Nombre|Título (tentativo)|
 |------|------------------|
-|x|x|
+|Federico Bliman|Patrones de fallas en AEGs(?)|
