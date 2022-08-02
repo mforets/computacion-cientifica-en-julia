@@ -11,10 +11,11 @@ mantenibles, eficientes y reproducibles.
 ## Forma de evaluación
 
 La evaluación consta de la entrega semanal de una lista de ejercicios y de un trabajo
-final del curso, enfocado al desarrollo de un paquete de Julia para la resolución de
-un problema de computación científica de interés para el/la estudiante. El estudiante
-defenderá un anteproyecto en un plazo límite establecido al inicio del curso.
-Finalmente, el proyecto completo, acompañado del código fuente y la documentación
+final del curso. Por un lado, se requiere tener aprobado el 70% del total de los ejercicios
+propuestos. Por otro lado, se debe aprobar el trabajo final, que se enfoca al desarrollo
+de un paquete de Julia para la resolución de un problema de computación científica de interés
+para el/la estudiante. El/la estudiante defenderá un anteproyecto en un plazo límite establecido
+al inicio del curso. Finalmente, el proyecto completo, acompañado del código fuente y la documentación
 correspondiente, se defenderá en una exposición oral abierta a otros estudiantes del
 curso con preguntas de los docentes.
 
