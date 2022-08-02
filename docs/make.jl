@@ -18,6 +18,7 @@ makedocs(
     strict = false,
     pages = [
         "Generalidades" => "index.md",
+        "Proyectos" => "proyectos.md",
         "Herramientas básicas" => Any[
             "Alcance del curso" => "Herramientas/Alcance_del_curso.md",
             "Entorno de desarrollo" => "Herramientas/Entorno_de_desarrollo.md",
