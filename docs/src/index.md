@@ -33,15 +33,15 @@ curso con preguntas de los docentes.
 |Semana|Clases|Temas|Fecha entregable|
 |------|------|------|------|
 |1 |02/08 05/08 |Alcance del curso. Entorno de desarrollo.|08/08|
-|2 |09/08 12/08 |Primeros pasos en Julia.| |
-|3 |16/08 19/08 |Computación numérica. Computación simbólica.||
-|4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.||
-|5 |30/08 02/09 |Gestor de paquetes. Estructuras de datos. Funciones. Propuestas de proyecto.||
-|6 |06/09 09/09 |Mecanismos de evaluación. Metaprogramación.||
-|7 |13/09 16/09 |Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez.||
-|8 |20/09 23/09 |Programación genérica. Programación paralela. Anti-patrones.||
-|9 |27/09 30/09 |Librerías. Gráficos para publicaciones. Optimización. Modelado y simulaciones numéricas.||
-|10 |04/10 07/10 |Aprendizaje automático.||
+|2 |09/08 12/08 |Primeros pasos en Julia.|15/08|
+|3 |16/08 19/08 |Computación numérica. Computación simbólica.|22/08|
+|4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.|29/08|
+|5 |30/08 02/09 |Gestor de paquetes. Estructuras de datos. Funciones. Propuestas de proyecto.|05/09|
+|6 |06/09 09/09 |Mecanismos de evaluación. Metaprogramación.|12/09|
+|7 |13/09 16/09 |Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez.|19/09|
+|8 |20/09 23/09 |Programación genérica. Programación paralela. Anti-patrones.|26/09|
+|9 |27/09 30/09 |Librerías. Gráficos para publicaciones. Optimización. Modelado y simulaciones numéricas.|03/10|
+|10 |04/10 07/10 |Aprendizaje automático.|10/10|
 |11 |11/10 14/10 |Proyecto.|-|
 |12 |18/10 21/10 ||-|
 |13 |25/10 28/10 ||-|
