@@ -287,3 +287,5 @@ module Entregable_1
 end
 ```
 cambiando el contenido de la constante `CI` por su número de cédula.
+
+(c) Zippear la carpeta `Entregable_1` y subirlo a la actividad correspondiente en Eva como se indicará en clase.
