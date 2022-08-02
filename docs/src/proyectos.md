@@ -3,3 +3,4 @@
 |Nombre|Título (tentativo)|
 |------|------------------|
 |Federico Bliman|Patrones de fallas en AEGs(?)|
+|Rodrigo Perdomo|x|
