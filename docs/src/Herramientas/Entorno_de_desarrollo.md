@@ -246,7 +246,7 @@ $ git branch quiero_lapiz
 $ git branch quiero_lapicera
 ```
 
-En cada `branch` haremos un cambio diferente del mismo archivo. En la rama `quiero_lapiz` agregue el material "lapiz" a la lista de materiales. Por otro lado, el la lista `quiero_lapicera`, en lugar de agregar "lapiz", agregue "lapicera". Una vez hechos los cambios, compruebe las diferencias con `master`:
+En cada `branch` haremos un cambio diferente del mismo archivo. En la rama `quiero_lapiz` agregue el material "lapiz" a la lista de materiales. Por otro lado, el la lista `quiero_lapicera`, en lugar de agregar "lapiz", agregue "lapicera" (recuerde que en cada caso debe hacer `$ git add <nombre_del_archivo>` y `$ git commit -m "<mensaje>"`). Una vez hechos los cambios, compruebe las diferencias con `master`:
 
 ```bash
 $ git diff master quiero_lapiz
@@ -308,7 +308,7 @@ Veamos cómo resolver el conflicto de forma manual (en la práctica, podremos ta
 - Repetir el primer paso para revisar el nuevo status del repo: `$ git status` y `$ git diff`.
 - Indicar a Git que ya hemos resuelto el conflicto: `$ git add materiales.txt`.
 - Volver a inspeccionar el status del repo: `$ git status`.
-- Realizar el `$ commit` del merge. Alcanza ejecutar `$ git commit`.
+- Realizar el `commit` del merge. Alcanza ejecutar `$ git commit`.
 
 
 ### Preguntas:
