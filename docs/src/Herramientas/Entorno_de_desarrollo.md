@@ -40,13 +40,10 @@ julia> include("hola.jl")
 Hola, mundo!
 ```
 
-### Numeros y aritmetica
+## Markdown
 
-Empecemos por utilizar Julia como una calculadora...
-
-```@example
-1 + 1
-```
+Markdown es otro lenguaje que utilizaremos a menudo para escribir notas y documentación. Además, la plataforma Zulip que utilizaremos para comunicarnos
+también soporta Markdown. Recomendamos seguir [este tutorial](https://docs.github.com/es/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#lists) para familiarizarse com el formato.
 
 ## VSCode
 
