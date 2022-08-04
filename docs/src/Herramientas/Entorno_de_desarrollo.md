@@ -285,7 +285,7 @@ module Entregable_1
 
     doble(x) = 2x
 
-    export double
+    export doble
 end
 ```
 cambiando el contenido de la constante `CI` por su número de cédula.
