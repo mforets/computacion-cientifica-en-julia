@@ -27,6 +27,7 @@ A continuación se da una pantallazo de distintos aspectos del lenguaje desde un
 - [The fast track to Julia](https://juliadocs.github.io/Julia-Cheat-Sheet)
 - [Getting started with Julia / JuMP docs](https://jump.dev/JuMP.jl/stable/tutorials/getting_started/getting_started_with_julia/#Getting-started-with-Julia)
 - [julia-mit Tutorial notebook](https://github.com/mitmath/julia-mit/blob/master/Tutorial.ipynb)
+- [Introduction to Julia by Jose Storopoli (JuliaCon 2022)](https://www.youtube.com/watch?v=uiQpwMQZBTA)
 
 ---
 
