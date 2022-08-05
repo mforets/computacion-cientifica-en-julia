@@ -6,3 +6,4 @@
 |Rodrigo Perdomo|x|
 |Joaquin Viera|x|
 |Mauricio Vanzulli|x|
+|Daniel Gomez|x|
