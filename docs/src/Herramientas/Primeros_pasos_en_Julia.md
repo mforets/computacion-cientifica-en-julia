@@ -34,6 +34,10 @@ A continuación se da una pantallazo de distintos aspectos del lenguaje desde un
 
 #### 2.1. La aguja de Buffon
 
+#### 2.2. Transcripción de ADN
+
+#### 2.3. Traducción de ARN
+
 
 
 
