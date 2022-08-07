@@ -46,14 +46,17 @@ Se consideran los siguientes struct:
 struct ADN
     dat::String
 end
+struct ARN
+    dat::String
+end
 ```
-Suponiendo que el campo de datos (`dat`) codifica al ADN como una secuencia de caracteres "A", "C", "G" y "T", escribir una funcion `transcribir(seq::ADN)` que devuelve la cadena `RNA` correspondiente. (Se debe definir un struct análogo para `ARN`).
+Suponiendo que el campo de datos (`dat`) codifica al ADN como una secuencia de caracteres "A", "C", "G" y "T", escribir una funcion `transcribir(seq::ADN)` que devuelve la cadena `RNA` correspondiente.
 
 Por ejemplo,
 
 ```julia
 julia> transcribir(ADN("CCTAGGACCAGGTT"))
-RNA("UUGGACCAGGAUCC")
+ARN("UUGGACCAGGAUCC")
 ```
 
 #### 2.2. Traducción de ARN
