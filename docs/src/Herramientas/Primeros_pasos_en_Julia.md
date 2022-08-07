@@ -45,6 +45,9 @@ Como aplicación de los conceptos vistos anteriormente, consideramos la implemen
 
 ## Ejercicios
 
+!!! warning "Format de entrga"
+    El formato de entrega es análogo al utilizado en el primer entregable, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_2` que define la constante CI asi como tambien exporta las funciones que se piden en cada ejercicio entregado.
+
 #### 2.1. Transcripción de ADN
 
 El [ácido desoxirribonucleico](https://es.wikipedia.org/wiki/%C3%81cido_desoxirribonucleico), conocido comúnmente como ADN (ó DNA de sus sigla en inglés) es la molécula responsable de la transmisión de la información genética de todos los organismos vivos. Dicha información se codifica mediante una secuencia de nucleótidos, que pueden ser cuatro: adenina (A), citosina (C), guanina (G) y timina (T). Ver figura de la estructura química del ADN [aquí](https://en.wikipedia.org/wiki/File:DNA_chemical_structure.svg).
