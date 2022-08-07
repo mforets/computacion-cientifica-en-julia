@@ -12,7 +12,6 @@ A continuación se da una pantallazo de distintos aspectos del lenguaje desde un
 ## Cadenas de caracteres
 
 
-
 ## Diccionarios
 
 
@@ -45,7 +44,7 @@ Como aplicación de los conceptos vistos anteriormente, consideramos la implemen
 
 ## Ejercicios
 
-!!! warning "Format de entrga"
+!!! warning "Formato de entrga"
     El formato de entrega es análogo al utilizado en el primer entregable, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_2` que define la constante CI asi como tambien exporta las funciones que se piden en cada ejercicio entregado.
 
 #### 2.1. Transcripción de ADN
@@ -106,7 +105,16 @@ CadenaProteica([Aminoacido("Ala"), Aminoacido("Arg"), Aminoacido("Asp"), Aminoac
 
 #### 2.3. La aguja de Buffon
 
+Considérese un modelo como el descrito en la figura, donde una aguja de largo L se tira sobre un plano marcado con dos rectas paralelas espaciadas una distancia $D$. Se asume que $L < D$. En su *Essai d’arithmetique morale* (1777), George Louis Leclerc, mejor conocido como el Compte de Buffon, 
+mostró que la probabilidad de que la aguja intersecte una de las líneas es $\frac{2L}{\pi D}$.
 
+Sean
+
+```julia
+abstract type Metodo end
+struct Buffon <: Metodo end
+```
+Implementar una función `estimar_pi(::Buffon, n=1000)` que utiliza el método antes descrito para obtener una aproximación del número ``pi`` con ``n`` corridas aleatorias.
 
 
 
