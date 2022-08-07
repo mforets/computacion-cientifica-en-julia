@@ -36,9 +36,11 @@ A continuación se da una pantallazo de distintos aspectos del lenguaje desde un
 
 #### 2.1. Transcripción de ADN
 
-El ácido desoxirribonucleico, conocido comúnmente como ADN (ó DNA de sus sigla en inglés) es la molécula responsable de la transmisión de la información genética de todos los organismos vivos. Dicha información se codifica mediante una secuencia de nucleótidos, que pueden ser cuatro: adenina (A), citosina (C), guanina (G) y timina (T).
+El [ácido desoxirribonucleico](https://es.wikipedia.org/wiki/%C3%81cido_desoxirribonucleico), conocido comúnmente como ADN (ó DNA de sus sigla en inglés) es la molécula responsable de la transmisión de la información genética de todos los organismos vivos. Dicha información se codifica mediante una secuencia de nucleótidos, que pueden ser cuatro: adenina (A), citosina (C), guanina (G) y timina (T).
 
-El primer paso para sintetizar proteinas consiste en *transcribir* la secuencia de ADN en una secuencia de ácido ribonicleido (ARN o RNA por su sigla en inglés). Dicha operación consiste en reemplazar todas las instancias de timina por el uracil (U), asi como cambién invertir la secuencia de ADN dada.
+![](https://en.wikipedia.org/wiki/File:DNA_chemical_structure.svg)
+
+El primer paso para sintetizar proteinas consiste en *transcribir* la secuencia de ADN en una secuencia de [ácido ribonicleido](https://es.wikipedia.org/wiki/%C3%81cido_ribonucleico) (ARN o RNA por su sigla en inglés). Dicha operación consiste en reemplazar todas las instancias de timina por el uracil (U), asi como cambién invertir la secuencia de ADN dada.
 
 Se consideran los siguientes struct:
 
@@ -60,6 +62,38 @@ ARN("UUGGACCAGGAUCC")
 ```
 
 #### 2.2. Traducción de ARN
+
+Luego de la etapa de transcripción, el ARN se traduce en una secuencia de aminoácidos que se pueden plegar en una proteina. 
+Un *codón* es una secuencia de tres nucleótidos que se traduce en un aminoácido de acuerdo a la tabla adjunta. Ciertos codones se llaman codones de terminación (macrados con un cuadrado negro en la figura).
+
+![](https://en.wikipedia.org/wiki/File:Aminoacids_table.svg)
+
+
+Escribir una función `traducir(::ARN)` que traduce una secuencia de ARN en una secuencia de aminoacidos. Si se encuentar un codón de terminación, la traducción debe terminar (sin incluir el codón de terminación).
+
+Se utilizarán los siguientes structs:
+
+```julia
+struct Aminoacido
+    dat::String
+end
+struct CadenaProteica
+    dat::Vector{Aminoacido}
+end
+```
+
+Ejemplos:
+
+```julia
+julia> traducir(ARN("CCU"))
+CadenaProteica([Aminoacido("Pro")])
+
+julia> traducir(ARN("AUGCCAAAGGGUUGA"))
+CadenaProteica([Aminoacido("Met"), Aminoacido("Pro"), Aminoacido("Lys"), Aminoacido("Gly")])
+
+julia> traducir(ARN("GCAAGAGAUAAUUGU"))
+CadenaProteica([Aminoacido("Ala"), Aminoacido("Arg"), Aminoacido("Asp"), Aminoacido("Asn"), Aminoacido("Cys")])
+```
 
 #### 2.3. La aguja de Buffon
 
