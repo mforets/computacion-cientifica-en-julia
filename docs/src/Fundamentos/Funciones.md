@@ -7,7 +7,24 @@
 
 ## Ejercicios
 
-#### 5.1. Dibujo de grafos con el método del equilibrio
+#### 5.1. Pretty printing
+
+Considerar nuevamente el ejercicio [2.2 Traducción de ARN](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Primeros_pasos_en_Julia/#.2.-Traducci%C3%B3n-de-ARN) e implementar las funciones necesarias para que las cadenas proteicas se impriman de manera más sencilla pero sin modificar el struct.
+
+Ejemplos:
+
+```julia
+julia> traducir(ARN("CCU"))
+CadenaProteica("Pro")
+
+julia> traducir(ARN("AUGCCAAAGGGUUGA"))
+CadenaProteica("MetProLysGly")
+
+julia> traducir(ARN("GCAAGAGAUAAUUGU"))
+CadenaProteica("AlaArgAspAsnCys")
+```
+
+#### 5.2. Dibujo de grafos con el método del equilibrio
 
 Existen diversas técnicas para dibujar [grafos](https://es.wikipedia.org/wiki/Grafo) de manera automática, es decir, dado un grafo $G = (V, E)$ donde $V$ es el conjunto de vértices y $E$ es el conjunto de aristas, determinar posiciones $(x_i, y_i)$ para cada $i = 1, \ldots, |V|$ de forma que el dibujo resultante muestre la simetría subyacente en el grafo. Entre ellas encontramos métodos basado en resortes (force-directed algorithms), que tienen las siguientes características generales:
 
