@@ -6,4 +6,6 @@
 |Rodrigo Perdomo|x|
 |Joaquin Viera|x|
 |Mauricio Vanzulli|x|
+|Gerardo Vitale|Modelo numéríco de un muro trombe|
+=======
 |Daniel Gomez|x|
