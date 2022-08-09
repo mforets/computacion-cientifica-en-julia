@@ -2,10 +2,9 @@
 
 |Nombre|Título (tentativo)|
 |------|------------------|
-|Federico Bliman|Patrones de fallas en AEGs(?)|
+|Federico Bliman|Patrones de fallas en AEGs|
 |Rodrigo Perdomo|x|
 |Joaquin Viera|x|
 |Mauricio Vanzulli|x|
-|Gerardo Vitale|Modelo numéríco de un muro trombe|
-=======
 |Daniel Gomez|x|
+|Gerardo Vitale|Modelo numérico de un Muro Trombe|
