@@ -105,7 +105,17 @@ CadenaProteica([Aminoacido("Ala"), Aminoacido("Arg"), Aminoacido("Asp"), Aminoac
 
 #### 2.3. La aguja de Buffon
 
-Considérese un modelo donde una aguja de largo $L$ se tira sobre un plano marcado con dos rectas paralelas espaciadas una distancia $D$; digamos, para fijar ideas, entre $r_1 = \{(x,y) \in \mathbb{R}^2: y = 0\}$ y $r_2 = \{(x,y) \in \mathbb{R}^2: y = D\}$. Se asume que $L < D$. En su *Essai d’arithmetique morale* (1777), George Louis Leclerc, mejor conocido como el Compte de Buffon, mostró que la probabilidad de que la aguja intersecte una de las líneas es $\frac{2L}{\pi D}$. Sea $f$ la fracción, de un conjunto de $N$ tiradas, que intersectan una de las líneas. Entonces, se puede obtener una aproximación del número $\pi$ mediante $\pi \approx \frac{2L}{f D}$. Sea `struct Buffon end`. Implementar una función `estimar_pi(::Buffon, N=1000)` que utiliza el método antes descrito para obtener una aproximación del número $\pi$ con $N$ tiradas aleatorias.
+Considérese un modelo donde una aguja de largo $L$ se tira sobre un plano marcado con dos rectas paralelas espaciadas una distancia $D$; digamos, para fijar ideas, entre $r_1 = \{(x,y) \in \mathbb{R}^2: y = 0\}$ y $r_2 = \{(x,y) \in \mathbb{R}^2: y = D\}$. Se asume que $L < D$. En su *Essai d’arithmetique morale* (1777), George Louis Leclerc, mejor conocido como el Compte de Buffon, mostró que la probabilidad de que la aguja intersecte una de las líneas es $\frac{2L}{\pi D}$. Sea $f$ la fracción, de un conjunto de $N$ tiradas, que intersectan una de las líneas. Entonces, se puede obtener una aproximación del número $\pi$ mediante $\pi \approx \frac{2L}{f D}$. 
+
+Sea
+
+```julia
+Base.@kwdef struct Buffon
+    D::Float64=10
+    L::Float64=8
+end
+```
+Implementar una función `estimar_pi(::Buffon, N=1000)` que utiliza el método antes descrito para obtener una aproximación del número $\pi$ con $N$ tiradas aleatorias. Ensayar diferentes valores de $D$ y de $L$.
 
 
 
