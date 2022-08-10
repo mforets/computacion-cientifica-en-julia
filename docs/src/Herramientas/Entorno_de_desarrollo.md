@@ -225,10 +225,97 @@ $ git config --global alias.graph "log --all --graph --decorate --oneline"
 
 Ahora, haciendo `$ git graph`, tendremos una representación de la estructura de `branches` o grafo del repo, y junto a cada `commit` se muestra una abreviación del `hash` correspondiente (7 caracteres en lugar del total de 40 caracteres).
 
+### Resolución de colisiones
+
+Las colisiones o conflictos se generan cuando una misma porción de código se intenta modificar desde dos `branches` diferentes, es decir, se desea hacer `git merge`. La resolución de estas colisiones consiste en especificarle a Git qué versión debe mantener.
+
+Cree un archivo `materiales.txt` en la rama principal de su repo (`master`), con el siguiente contenido:
+
+```plaintext
+- mochila
+- cuaderno
+```
+
+Cree dos `branches`: una llamada `quiero_lapiz` y otra llamada `quiero_lapicera`:
+
+```bash
+$ git branch quiero_lapiz
+$ git branch quiero_lapicera
+```
+
+En cada `branch` haremos un cambio diferente del mismo archivo. En la rama `quiero_lapiz` agregue el material "lapiz" a la lista de materiales. Por otro lado, el la lista `quiero_lapicera`, en lugar de agregar "lapiz", agregue "lapicera" (recuerde que en cada caso debe hacer `$ git add <nombre_del_archivo>` y `$ git commit -m "<mensaje>"`). Una vez hechos los cambios, compruebe las diferencias con `master`:
+
+```bash
+$ git diff master quiero_lapiz
+$ git diff master quiero_lapicera
+```
+
+Supongamos que ahora queremos incorporar los cambios en `quiero_lapiz` a `master`:
+
+```bash
+$ git checkout master
+$ git status
+$ git merge quiero_lapiz
+```
+
+Supongamos ahora que queremos agregar los cambios de `quiero_lapicera` al nuevo estado de `master`:
+
+```bash
+$ git merge quiero_lapicera
+```
+
+Veremos que Git ha encontrado un conflicto (de lo contrario, hubiese creado un `merge commit` automáticamente):
+
+```bash
+$ git status
+```
+
+Git no va a tomar ninguna decisión, sino que es el usuario quién debe hacerlo. Sin embargo, Git nos da claras instrucciones sobre cómo hacerlo. Abra el archivo conflictivo (`materiales.txt`), por ej.:
+
+```bash
+$ cat materiales.txt
+```
+
+También puede ver las especificaciones de los conflictos con:
+
+```bash
+$ git diff
+```
+
+aunque `git diff` solo muestra los fragmentos conflictivos.
+
+Git inserta los identificadores `<<<<<<<` para el estado actual y `>>>>>>>` para los cambios propuestos (además, `=======` oficia de separador).
+
+En este momento, pueden darse dos situaciones: (a) deseamos abortar el `merge`, o (b) deseamos resolver el conflicto.
+
+#### (a) Abortar el `merge`
+
+Puede suceder que no podamos resolver el conflicto hasta comunicarnos con algún colega. En ese caso, podemos abortar el `merge` y restaurar el repo a `HEAD` (estado que tenía en el último `commit`):
+
+```bash
+$ git merge --abort
+```
+
+#### (b) Resolución del conflicto de forma manual
+
+Veamos cómo resolver el conflicto de forma manual (en la práctica, podremos también hacerlo con herramientas como VSCode o GirtKraken). Los pasos son los siguientes (puede ayudarse de `$ git graph` para ver la estrucutra de ramas en cada etapa):
+
+- Ver el status del repo con `$ git status` y `$ git diff`.
+- Editar el archivo (`materiales.txt`) y editarlo con las modificaciones que se deseen (incluso pueden mantenerse los cambios propuestos en ambas `branches` o hasta eliminar ambos). Se deben quitar los identificadores (`<<<<<<<`, `>>>>>>>` y `=======`).
+- Repetir el primer paso para revisar el nuevo status del repo: `$ git status` y `$ git diff`.
+- Indicar a Git que ya hemos resuelto el conflicto: `$ git add materiales.txt`.
+- Volver a inspeccionar el status del repo: `$ git status`.
+- Realizar el `commit` del merge. Alcanza ejecutar `$ git commit`.
+
+
+### Preguntas:
+
+- ¿Qué sucede con el conflicto detectado si en las dos `branches` se hubiesen hecho los mismos cambios?
+- Suponga que desde la `branch` `quiero_lapiz` hace el `commit` de sus cambios y luego, *desde esa misma* `branch` crea una nueva `branch` que llama `quiero_lapicera`. Luego, desde `quiero_lapicera` agrega nuevos cambios y procede a hacer su `commit`. Si ahora hace `merge` de ambas `branches`, ¿qué conflicto detecta?
+
 ### Comandos útiles
 
 Una lista de los comandos básicos de git se puede encontrar en [este link](https://es.wikipedia.org/wiki/Git#%C3%93rdenes_b%C3%A1sicas).
-
 
 ## Referencias
 
