@@ -94,13 +94,13 @@ Ejemplos:
 
 ```julia
 julia> traducir(ARN("CCU"))
-CadenaProteica([Aminoacido("Pro")])
+CadenaProteica(Aminoacido[Aminoacido("Pro")])
 
 julia> traducir(ARN("AUGCCAAAGGGUUGA"))
-CadenaProteica([Aminoacido("Met"), Aminoacido("Pro"), Aminoacido("Lys"), Aminoacido("Gly")])
+CadenaProteica(Aminoacido[Aminoacido("Met"), Aminoacido("Pro"), Aminoacido("Lys"), Aminoacido("Gly")])
 
 julia> traducir(ARN("GCAAGAGAUAAUUGU"))
-CadenaProteica([Aminoacido("Ala"), Aminoacido("Arg"), Aminoacido("Asp"), Aminoacido("Asn"), Aminoacido("Cys")])
+CadenaProteica(Aminoacido[Aminoacido("Ala"), Aminoacido("Arg"), Aminoacido("Asp"), Aminoacido("Asn"), Aminoacido("Cys")])
 ```
 
 #### 2.3. La aguja de Buffon
