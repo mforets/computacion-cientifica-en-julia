@@ -79,7 +79,7 @@ Por lo tanto, el error de las operaciones de máquina es prácticamente el mismo
 
 Volviendo al ejemplo planteado, vemos que `(1.0 + ε) - 1.0` da $0$ miesntras que `1.0 + (ε - 1.0)` da `ε` (resultado exacto). Para entender este comportamiento, se debe notar que entre $1$ y $1+\varepsilon_{mach}/2$ no hay números de punto flotante, pues, en el intervalo $[1,2)$, el menor espaciamiento es $\varepsilon_{mach}$ (correspondiente a $e=0$), por lo que la diferencia da $0$. Por otro lado, el espacio entre números de punto flotante en el intervalo $[1/2,1)$ es $\varepsilon_{mach}/2$ (para $e=-1$), por lo tanto $1-\varepsilon_{mach}/2$ (y, por lo tanto, también su opuesto) se representa de manera exacta. Es por eso que en este último caso, el resultado `1.0 + (ε - 1.0)` es el exacto ($\varepsilon_{mach}/2$).
 
-## Condition number
+## Número de condición
 
 Sea $\tilde{x}=\mathbf{fl}(x)=x(1+\varepsilon)$, para algún $|\varepsilon|\leq \varepsilon_{mach}/2$. Dada una función $f:\mathbb{R}\to\mathbb{R}$, calculamos la tasa de cambio relativo del resultado y de los datos como:
 
@@ -93,6 +93,24 @@ Se define el condition number relativo para el problema $f(x)$, ($\kappa_f (x)$)
 \kappa_f (x) = \lim_{\varepsilon\to 0} \dfrac{|f(x)-f(x(1+\varepsilon))|}{| \varepsilon f(x) |}=\left| \dfrac{x f^\prime(x)}{f(x)} \right|
 ```
 El problema de $f(x)$ es mal-condicionado (*ill-conditioned*) cuando $\kappa_f (x)$ es grande, ya que pequeñas perturbaciones del dato $x$ provoca grandes cambios relativos del resultado $f(x)$. En particular, $\kappa_f (x)$ grandes son una señal de que el error en el cálculo de la función $f(x)$ no se mantendrá comparable con el error de redondeo de $x$.
+
+## El problema de k-bandits
+
+
+
+## Evaluacion de polinomios
+
+Como ejemplos consideremos el polinomio univariado $P_k \in \mathbb{R}[x]$ dado por
+
+```math
+P_k(x) := \sum_{k=0}^n \dfrac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \ldots + \frac{x^k}{k!}.
+```
+
+(a) Implementar una funcion `evaluar(x)` que evalua el polinomio $P_k$ en el valor $x$.
+
+(b) ¿Cuantas multiplicaciones y cuantas divisiones utilizó en la parte anterior, para un valor de $k$ dado? Chequear (o revisar la implementación si no se verifica) que no se utilizan más de $2k$ multiplicaciones ni más de $k$ divisiones.
+
+(c) Implementar la evaluación utilizando el [algoritmo de Horner](https://es.wikipedia.org/wiki/Algoritmo_de_Horner). Revisar el resultado de la parte anterior con el nuevo algoritmo.  
 
 ## Iteración de punto fijo
 
@@ -111,16 +129,10 @@ El problema de $f(x)$ es mal-condicionado (*ill-conditioned*) cuando $\kappa_f (
 
 ## Ejercicios
 
-#### 3.1. Polinomios
+#### 3.1. Método UCB para el problema de k-bandits 
 
-Consideremos el polinomio univariado $P_k \in \mathbb{R}[x]$ dado por
 
-```math
-P_k(x) := \sum_{k=0}^n \dfrac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \ldots + \frac{x^k}{k!}.
-```
+#### 3.2. Integración de Runge-Kutta
 
-(a) Implementar una funcion `evaluar(x)` que evalua el polinomio $P_k$ en el valor $x$.
 
-(b) ¿Cuantas multiplicaciones y cuantas divisiones utilizó en la parte anterior, para un valor de $k$ dado? Chequear (o revisar la implementación si no se verifica) que no se utilizan más de $2k$ multiplicaciones ni más de $k$ divisiones.
 
-(c) Implementar la evaluación utilizando el [algoritmo de Horner](https://es.wikipedia.org/wiki/Algoritmo_de_Horner). Revisar el resultado de la parte anterior con el nuevo algoritmo.  
