@@ -1,6 +1,6 @@
 # Primeros pasos en Julia
 
-A continuación se da una pantallazo de distintos aspectos del lenguaje desde un punto de vista puramente práctico: mediante varios ejemplos de código se busca dar una vision de qué se trata el lenguaje. En otras partes del curso se profundizará en los distintos aspectos aquí mencionados.
+A continuación se da una pantallazo de distintos aspectos del lenguaje desde un punto de vista puramente práctico: mediante varios ejemplos de código se busca dar una visión de qué se trata el lenguaje. En otras partes del curso se profundizará en los distintos aspectos aquí mencionados.
 
 
 ## Variables
@@ -44,14 +44,14 @@ Como aplicación de los conceptos vistos anteriormente, consideramos la implemen
 
 ## Ejercicios
 
-!!! warning "Formato de entrga"
-    El formato de entrega es análogo al utilizado en el primer entregable, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_2` que define la constante CI asi como tambien exporta las funciones que se piden en cada ejercicio entregado.
+!!! warning "Formato de entrega"
+    El formato de entrega es análogo al utilizado en el primer entregable, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_2` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
 
 #### 2.1. Transcripción de ADN
 
 El [ácido desoxirribonucleico](https://es.wikipedia.org/wiki/%C3%81cido_desoxirribonucleico), conocido comúnmente como ADN (ó DNA de sus sigla en inglés) es la molécula responsable de la transmisión de la información genética de todos los organismos vivos. Dicha información se codifica mediante una secuencia de nucleótidos, que pueden ser cuatro: adenina (A), citosina (C), guanina (G) y timina (T). Ver figura de la estructura química del ADN [aquí](https://en.wikipedia.org/wiki/File:DNA_chemical_structure.svg).
 
-El primer paso para sintetizar proteinas consiste en *transcribir* la secuencia de ADN en una secuencia de [ácido ribonicleido](https://es.wikipedia.org/wiki/%C3%81cido_ribonucleico) (ARN o RNA por su sigla en inglés). Dicha operación consiste en reemplazar todas las instancias de timina por el uracil (U), asi como cambién invertir la secuencia de ADN dada.
+El primer paso para sintetizar proteínas consiste en *transcribir* la secuencia de ADN en una secuencia de [ácido ribonicleido](https://es.wikipedia.org/wiki/%C3%81cido_ribonucleico) (ARN o RNA por su sigla en inglés). Dicha operación consiste en reemplazar todas las instancias de timina por el uracil (U), asi como también invertir la secuencia de ADN dada.
 
 Se consideran los siguientes struct:
 
@@ -74,10 +74,10 @@ ARN("UUGGACCAGGAUCC")
 
 #### 2.2. Traducción de ARN
 
-Luego de la etapa de transcripción, el ARN se traduce en una secuencia de aminoácidos que se pueden plegar en una proteina. 
+Luego de la etapa de transcripción, el ARN se traduce en una secuencia de aminoácidos que se pueden plegar en una proteína. 
 Un *codón* es una secuencia de tres nucleótidos que se traduce en un aminoácido de acuerdo a la tabla que se puede encontrar [aquí](https://en.wikipedia.org/wiki/File:Aminoacids_table.svg). Ciertos codones se llaman codones de terminación (macrados con un cuadrado negro en la tabla).
 
-Escribir una función `traducir(::ARN)` que traduce una secuencia de ARN en una secuencia de aminoacidos. Si se encuentar un codón de terminación, la traducción debe terminar (sin incluir el codón de terminación).
+Escribir una función `traducir(::ARN)` que traduce una secuencia de ARN en una secuencia de aminoacidos. Si se encuentra un codón de terminación, la traducción debe terminar (sin incluir el codón de terminación).
 
 Se utilizarán los siguientes structs:
 
