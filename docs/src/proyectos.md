@@ -8,3 +8,4 @@
 |Mauricio Vanzulli|x|
 |Daniel Gomez|x|
 |Gerardo Vitale|Modelo numérico de un Muro Trombe|
+|Juan Pedro Tarigo|x|
