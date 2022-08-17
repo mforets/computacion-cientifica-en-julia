@@ -127,17 +127,33 @@ P_k(x) := \sum_{k=0}^n \dfrac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \ldots + \frac
 
 ---
 
-## Ejercicios
+## Entregable 3
 
 !!! warning "Formato de entrega"
     El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_3` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
 
-#### 3.1. Método UCB para el problema de k-bandits 
+#### 3.1. Integración de Runge-Kutta
+
+En este ejercicio se plantea, en primer lugar, implementar el metodo clasico de integracion de Runge-Kutta de orden 4. En segundo lugar, se aplica dicho metodo para resolver una ecuacion diferencial famosa en dinamica de poblaciones, el sistema de Lotka-Volterra (predador-presa).
+
+#### 3.2. Evaluación de polinomios por el método de Bernstein
 
 
-#### 3.2. Integración de Runge-Kutta
+## Entregable 4
 
+!!! warning "Formato de entrega"
+    El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_3` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
 
-#### 3.3. Evaluación de polinomios por el método de Bernstein
+#### 4.1. Método UCB para el problema de k-bandits 
 
+Resolver el problema de k-bandits trabajado en clase utilizando el algoritmo de upper-confidence-bound (UCB) que se describe a continuacion. La idea es seleccionar aquellas acciones (palancas) de acuerdo a su potencial de ser optimas, tomando en cuenta tanto el estimado del mejor valor actual, como tambien la incertidumbre en dicha estimacion.
+
+Sea $A_t$ la accion seleccionada en el tiempo $t$ para $t = 1, \ldots, N$ pasos de tiempo, y sea $Q_t(a)$ el *promedio* de recompensas recibido de la accion $a$ a tiempo $t$. El algoritmo UCB utiliza la siguiente logica:
+
+$$
+A_t := \argmax_{a} \left( Q_t(a) + c \sqrt{\dfrac{\ln t}{N_t(a)}} \right),
+$$
+donde $\ln t$es el logaritmo (natural) del numero de jugada actual, $N_t(a)$ es el numero de veces que la accion $a$ ha sido seleccionada anteriormente a la jugada $t$-esima, y el numero $c > 0$ es un parametro del algoritmo que controla el grado de *exploracion*. Si $N_t(a)$ igual a cero, se considera que $a$ maximiza la expresion. Aqui $A_t$ repre
+
+Implementar una funcion de firma `simular(::Maquina, ::UCB; ::N=1000)` que implementa el algoritmo anterior, donde `UCB` es un struct asociado al algoritmo, con valor por defecto `c=2`.
 

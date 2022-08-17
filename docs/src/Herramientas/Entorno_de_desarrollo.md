@@ -325,7 +325,7 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 ---
 
-## Ejercicios
+## Entregable 1
 
 #### 1.1. Comandos de git
 
