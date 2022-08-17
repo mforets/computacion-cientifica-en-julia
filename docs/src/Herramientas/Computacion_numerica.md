@@ -174,7 +174,7 @@ b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j
 
 Sea $X = [\underline{x}_1, \bar{x}_1] \times \cdots \times [\underline{x}_n, \bar{x}_n] := [\underline{x}, \bar{x}]$ un dominio rectangular ("caja").
 
-Implementar una función `bernstein_coefficients(pol)` que recibe un polinomio definido en el paquete [`DynamicPolynomials.jl`](https://github.com/JuliaAlgebra/DynamicPolynomials.jl) y devuelve los coeficientes de Bernstein ($b_i$) asociados de grado $l$ (para $l$ suficientemente grande).
+Implementar una función `bernstein_coefficients(pol, X)` que recibe un polinomio definido en el paquete [`DynamicPolynomials.jl`](https://github.com/JuliaAlgebra/DynamicPolynomials.jl) y devuelve los coeficientes de Bernstein ($b_i$) asociados de grado $l$ (para $l$ suficientemente grande) respecto de $X$.
 
 
 ---
