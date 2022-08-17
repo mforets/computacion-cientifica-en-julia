@@ -138,22 +138,25 @@ En este ejercicio se plantea, en primer lugar, implementar el metodo clasico de 
 
 #### 3.2. Evaluación de polinomios por el método de Bernstein
 
+---
 
 ## Entregable 4
 
 !!! warning "Formato de entrega"
-    El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_3` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
+    El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_4` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
 
 #### 4.1. Método UCB para el problema de k-bandits 
 
-Resolver el problema de k-bandits trabajado en clase utilizando el algoritmo de upper-confidence-bound (UCB) que se describe a continuacion. La idea es seleccionar aquellas acciones (palancas) de acuerdo a su potencial de ser optimas, tomando en cuenta tanto el estimado del mejor valor actual, como tambien la incertidumbre en dicha estimacion.
+En este ejercicio revisitamos el problema de k-bandits trabajado en clase. Se implementará el algoritmo llamado upper-confidence-bound (UCB) que se describe a continuación. Sea $A_t$ la acción seleccionada en el tiempo $t$ para $t = 1, \ldots, N$ pasos de tiempo, y sea $Q_t(a)$ el *promedio* de recompensas recibido de la acción $a$ a tiempo $t$.
 
-Sea $A_t$ la accion seleccionada en el tiempo $t$ para $t = 1, \ldots, N$ pasos de tiempo, y sea $Q_t(a)$ el *promedio* de recompensas recibido de la accion $a$ a tiempo $t$. El algoritmo UCB utiliza la siguiente logica:
+El algoritmo UCB utiliza la siguiente lógica:
 
-$$
+```math
 A_t := \argmax_{a} \left( Q_t(a) + c \sqrt{\dfrac{\ln t}{N_t(a)}} \right),
-$$
-donde $\ln t$es el logaritmo (natural) del numero de jugada actual, $N_t(a)$ es el numero de veces que la accion $a$ ha sido seleccionada anteriormente a la jugada $t$-esima, y el numero $c > 0$ es un parametro del algoritmo que controla el grado de *exploracion*. Si $N_t(a)$ igual a cero, se considera que $a$ maximiza la expresion. Aqui $A_t$ repre
+```
+donde $\ln t$ es el logaritmo (natural) del número de jugada actual, $N_t(a)$ es el número de veces que la acción $a$ ha sido seleccionada anteriormente a la jugada $t$-ésima, y la constante $c > 0$ es un parámetro del algoritmo que controla el grado de *exploración*. Si $N_t(a)$ es igual a cero, se considera que $a$ maximiza la expresión. Si hay más de un maximizador, se escoge uno de ellos al azar (de manera uniforme).
 
-Implementar una funcion de firma `simular(::Maquina, ::UCB; ::N=1000)` que implementa el algoritmo anterior, donde `UCB` es un struct asociado al algoritmo, con valor por defecto `c=2`.
+La idea del algoritmo es seleccionar aquellas acciones (palancas) de acuerdo a su potencial de ser óptimas, tomando en cuenta tanto el estimado del mejor valor actual, como también la incertidumbre asociada a dicha estimación.
+
+Implementar una función `simular(::Maquina, ::UCB; N::Int=1000)` que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
 
