@@ -118,8 +118,6 @@ P_k(x) := \sum_{k=0}^n \dfrac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \ldots + \frac
 
 ## Aritmética de intervalos
 
-¿Biblio?
-
 ## Descenso por gradiente
 
 ## Referencias
@@ -130,11 +128,31 @@ P_k(x) := \sum_{k=0}^n \dfrac{x^k}{k!} = 1 + x + \frac{x^2}{2!} + \ldots + \frac
 ## Entregable 3
 
 !!! warning "Formato de entrega"
-    El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_3` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado.
+    El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_3` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado. **Importante:** Además debe incluir los archivos de proyecto (`Project.toml` y `Manifest.toml`) en su entrega. 
 
 #### 3.1. Integración de Runge-Kutta
 
-En este ejercicio se plantea, en primer lugar, implementar el metodo clasico de integracion de Runge-Kutta de orden 4. En segundo lugar, se aplica dicho metodo para resolver una ecuacion diferencial famosa en dinamica de poblaciones, el sistema de Lotka-Volterra (predador-presa).
+En este ejercicio trabajamos con ecuaciones diferenciales numéricamente. Sea $x' = f(x(t), t)$, $x \in \mathbb{R}^n$, un sistema de ecuaciones diferenciales ordinarias de primer orden en $n \geq 1$ variables. Dentro de la gran variedad de enfoques para integrar numéricamente dichos sistemas se encuentra la familia de métodos de [Runge-Kutta](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods). Nos concentramos en el método RK4 (cuarto orden) que se describe a continuación. En dicho método, dado un paso temporal $h > 0$ y un estado inicial $x_0$ se calcula, para cada $k = 0, 1,\ldots, N$, una secuencia de valores $x_1, x_2, \ldots, x_N$ mediante la siguiente fórmula explícita:
+
+```math
+x_{k+1} = x_k + h\sum_{k=1}^s b_k w_k,
+```
+Para el esquema que nos interesa utilizamos $s = 4$ y los coeficientes $b_i$ resultan ser $(1/6, 2/6, 2/6, 1/6)$. Los términos $w_i$ resultan de evaluar el campo vectorial $f$ en los siguientes puntos intermedios: $w_1 = f(x, t)$, $w_2 = f(x + hw_1 / 2, t + h/2)$, $w_3 = f(x + hw_2 / 2, t + h/2)$ y $w_4 = f(x + hw_3, t + h)$.
+
+Implementar una función `integrate(f::Function, alg::RK4, t0, T, x0)` que resuelve el problema de valores iniciales $x' = f(x(t), t)$, $x(0) = x_0$, en el intervalo de tiempo entre $t_0$ y $T$. Aquí `RK4` es un struct asociado al algoritmo y que debe almacenar el paso $h$ (sin valor por defecto). La función `integrate` debe devolver un vector con el resultado de la integración.
+
+Como caso de ejemplo se considerará la integración de las ecuaciones de [Lotka-Volterra](https://es.wikipedia.org/wiki/Ecuaciones_Lotka%E2%80%93Volterra):
+
+```julia
+function lotkavolterra(x, t)
+    α, β, γ, δ = 1.5, 1., 3., 1.
+    [α * x[1] - β * x[1] * x[2], δ * x[1] * x[2] - γ * x[2]]
+end
+```
+entendiéndose que el siguiente comando debe integrar dicho sistema entre $t = 0$ y $t = 1.0$ con paso temporal $h = 0.01$ y condición inicial $x_0 = [1, 1]$:
+```julia
+julia> integrate(lotkavolterra, RK4(h=0.01), 0.0, 1.0, ones(2))
+```
 
 #### 3.2. Evaluación de polinomios por el método de Bernstein
 
@@ -160,3 +178,8 @@ La idea del algoritmo es seleccionar aquellas acciones (palancas) de acuerdo a s
 
 Implementar una función `simular(::Maquina, ::UCB; N::Int=1000)` que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
 
+#### 4.2. Conjunto alcanzable mediante simulaciones
+
+En este ejercicio combinamos el Ejercicio 3.1 con [conjuntos en espacios Euclídeos](https://en.wikipedia.org/wiki/Euclidean_space). Se debe escribir una función `reachable_set(f::Function, ::RK4, t0, T, X0::Box)` que devuelve otro conjunto $Y$ tal que $Y$ es una estimación, obtenida mediante simulación numérica de los estados alcanzables en el tiempo $T$.
+
+Independiente de la implementación de `Box` utilizada, ésta debe admitir un constructor con centro (vector) y radio (escalar), e.g. `Box([1.0, 1.0], 1.0)` que representa el conjunto $\{x \in \mathbb{R}^2: \Vert x \Vert_\infty \leq 1 \}$.
