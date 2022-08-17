@@ -35,8 +35,8 @@ curso con preguntas de los docentes.
 |------|------|------|------|
 |1 |02/08 05/08 |Alcance del curso. Entorno de desarrollo.|08/08|
 |2 |09/08 12/08 |Primeros pasos en Julia.|15/08|
-|3 |16/08 19/08 |Computación numérica. Computación simbólica.|22/08|
-|4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.|29/08|
+|3 |16/08 19/08 |Computación numérica. Computación simbólica.|24/08|
+|4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.|31/08|
 |5 |30/08 02/09 |Gestor de paquetes. Estructuras de datos. Funciones. Propuestas de proyecto.|05/09|
 |6 |06/09 09/09 |Mecanismos de evaluación. Metaprogramación.|12/09|
 |7 |13/09 16/09 |Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez.|19/09|
