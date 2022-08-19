@@ -6,6 +6,7 @@
 
 ## Diferenciación automática
 
+CH 2.4 de Kochenderfer, M. J., & Wheeler, T. A. (2019). Algorithms for optimization. Mit Press.
 
 ---
 
