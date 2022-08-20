@@ -156,33 +156,38 @@ julia> integrate(lotkavolterra, RK4(h=0.01), 0.0, 1.0, ones(2))
 
 #### 3.2. Evaluación de polinomios por el método de Bernstein
 
-En este ejercicio trabajamos con polinomios univariados $p : \mathbb{R} \to \mathbb{R}$, cuyos coeficientes en la base de potencias notamos $\{a_i\}_{i=0}^l$ siendo $l \in \mathbb{N}$ el *grado* del polinomio. Notese que dicho polinomio, cuando se expande de potencia, tiene lo sumo $l+1$ terminos no nulos,
+En este ejercicio trabajamos con polinomios univariados $p : \mathbb{R} \to \mathbb{R}$, cuyos coeficientes en la base de potencias notamos $\{a_i\}_{i=0}^l$ siendo $l \in \mathbb{N}$ el *grado* del polinomio ($a_l \neq 0$). Tiene así a lo sumo $l+1$ términos (monomios) no nulos y escribimos:
 ```math
 p(x) = a_0 + a_1 x + \ldots + a_l x^l.
 ```
-Para trabajar de manera conveniente con esta clase de polinomios en Julia trabajaremos con el paquete [Polynomials.jl](https://github.com/JuliaMath/Polynomials.jl). Por ejemplo, para definir el polinomio
+Para trabajar con polinomios univariados en Julia utilizaremos [Polynomials.jl](https://github.com/JuliaMath/Polynomials.jl). Por ejemplo, sea
 
 ```math
-p(x) = 3x^2 - 2x + 1
+p(x) = 3x^2 - 2x + 1.
 ```
-escribimos:
+Podemos definirlo como un `Polynomials.Polynomial` así:
 ```julia
 julia> using Polynomials
 
 julia> p = Polynomial([1, -2, 3])
 Polynomial(1 - 2*x + 3*x^2)
 ```
-Notese que el orden mas bajo se ingresa primero. Consultar la documentacion de [Polynomials.jl](https://juliamath.github.io/Polynomials.jl/stable/) por mas casos de uso.
+Nótese que el órden más bajo se ingresa primero. Consultar la documentación de [Polynomials.jl](https://juliamath.github.io/Polynomials.jl/stable/) por más casos de uso.
 
-En este ejercicio nos interesa utilizar un metodo llamado *expansion de Bernstein* que permite, entre otras cosas, calcular extremos (maximos y minimos) de polinomios en un dominio dado. Dicho metodo tambien permite trabajar con polinomios multivariados, pero eso lo analizaremos en un entregable mas adelante. Como referencia ver [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012).
+El método llamado *expansion de Bernstein* permite, entre otras cosas, calcular extremos (máximos y mínimos) de polinomios en un dominio dado, de manera aproximada pero rápida. Dicho método también aplica a polinomios multivariados, pero dejaremos esa generalización para un entregable futuro. Como referencia, tanto para el caso univariado como para el multivariado, ver [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012).
 
-El primer paso en este ejercicio es implementar una funcion `bernstein_basis(l, i)` que devuelve una funcion que se corresponde con el polinomio de Bernstein $i$-esimo polinomio de Bernstein de grado $l$, definido mediante la formula
+El primer paso en este ejercicio consiste en implementar una función
+```julia
+bernstein_basis(l::Int, i::Int)::Function
+```
+que devuelve el polinomio de Bernstein $i$-ésimo de grado $l$, definido mediante la fórmula
 
 ```math
 B_i^l(x) = \binom{l}{i}x^i (1 - x)^{l-i},\qquad i = 0, \ldots, l.
 ```
-Se adopta la convencion de que $B_i^l(x) = 0$ para todo $x$ si $i < 0$ o si $i > l$. Por ejemplo,
+Se adopta la convención de que $B_i^l(x) = 0$ para todo $x$ si $i < 0$ o si $i > l$.
 
+Por ejemplo, $B^3_1(x) = 3x^3 - 6x^2 + 3x$:
 ```julia
 julia> p = bernstein_basis(3, 1)
 #1 (generic function with 1 method)
@@ -193,48 +198,66 @@ Polynomial(3*x - 6*x^2 + 3*x^3)
 julia> sum(abs(p(x) - p_test(x)) for x in rand(1_000))
 5.703991186984617e-14
 ```
-Se recomienda corroborar su implementacion con los graficos de la Figura 3.1 de la citada tesis.
+Se recomienda corroborar su implementación con los gráficos de la Figura 3.1 de la citada tesis.
 
-Notese que, dado un polinomio en la base de potencias
+Dado un polinomio en la base de potencias
 ```math
-p(x) = \sum_{i=0}^l a_i x^k,
+p(x) = \sum_{i=0}^l a_i x^i,
 ```
-su expresion en la base de Bernstein es
+su expresión en la base de Bernstein de grado $l$ en el dominio unitario $X = [0, 1]$ es:
 ```math
 p(x) = \sum_{i=0}^l b_i B_i^l(x),
 ```
-con $l + 1$ coeficientes $b_i$ a determinar. Por ejemplo,
+con $l + 1$ coeficientes $\{b_i\}$ a determinar. Por ejemplo:
 ```math
 p(x) = -5x^2 + 2x + 3 = 3(1 - 2x+x^2) + 4(2x - 2x^2) = 3 B_0^2(x) + 4B_1^2(x).
 ```
-Por lo tanto, los coeficientes en la base de potencias son $(a_0, a_1, a_2) = (3, 2, -5)$ mientras que los coeficientes en la base de Bernstein de grado $l = 2$, en el dominio $D = [0, 1]$, son $(b_0, b_1, b_2) = (3, 4, 0)$.
+Así, en este ejemplo los coeficientes en la base de potencias son $(a_0, a_1, a_2) = (3, 2, -5)$ mientras que los coeficientes en la base de Bernstein de grado $l = 2$ son $(b_0, b_1, b_2) = (3, 4, 0)$.
 
-Implementar una función `bernstein_coefficients(pol::Polynomial)` que permite convertir de la base de potencias a la base de Bernstein en el dominio unitario $D =[0, 1]$. La conversion se puede lograr mediante la siguiente formula (ver Teorema (3.9) de la citada tesis para la demostracion):
-```math
-b_i = \sum_{j = 0}^k \dfrac{\binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
+Implementar una función
+```julia
+bernstein_coefficients(pol::Polynomial)::Vector
 ```
-Por ejemplo
-
+que permite convertir de la base de potencias a la base de Bernstein. La conversión se puede lograr mediante la siguiente fórmula (ver Teorema (3.2) de la citada tesis para la demostración):
+```math
+b_i = \sum_{j = 0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
+```
+En el ejemplo anterior,
 ```julia
 julia> p = Polynomial([3, 2, -5])
+Polynomial(3 + 2*x - 5*x^2)
+
+julia> bernstein_coefficients(p)
 [3, 4, 0]
 ```
-
-Cuando el dominio de interes no es el intervalo unitario, se requiere utilizar una formula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio ("intervalo"). Implementar una función
+Cuando el dominio de interés no es el intervalo unitario, se requiere utilizar una fórmula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio (intervalo) arbitrario, $\underline{x} <  \bar{x}$. Implementar una función
 ```julia
-bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})::Vector
 ```
-que recibe un polinomio (tipo `Polynomial`) y devuelve en un vector los $l+1$ coeficientes de Bernstein ($b_i$) asociados de grado $l$ en $X$ (representado como una tupla de numeros). Para ello se utilizara el resultado (ver ecuacion ecuación (3.13) de la citada tesis):
+que recibe un polinomio y devuelve en un vector los $l+1$ coeficientes de Bernstein $\{b_i\}$ asociados de grado $l$ en $X$ (representado como una tupla de números). Para ello se utilizará el siguiente resultado (ver ecuación (3.13) de la citada tesis):
 ```math
 b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j \sum_{k=j}^l \binom{k}{j}\underline{x}^{k-j}a_k,\qquad 0 \leq i \leq l.
 ```
 
-Finalmente, una de las propiedades mas interesantes de la expansion de Bernstein consiste en el hecho de que los coeficientes de la expansion permite una forma rapida de evaluar el *rango* del polinomio en el dominio $D$ dado, resultado que se conoce como *Bernstein enclosure*. Concretamente,
+Una de las propiedades más interesantes de la expansión de Bernstein es que los coeficientes de la expansión contienen información sobre el *rango* del polinomio en el dominio $X$ dado, resultado que se conoce como *Bernstein enclosure*. Concretamente,
 
 ```math
-\min_{i} \{ b_i \} \leq p(x) \leq \max_{i} \{b_i\},\qquad x \in D. 
+\min_{i} \{ b_i \} \leq p(x) \leq \max_{i} \{b_i\},\qquad x \in X. 
 ```
-Implementar una funcion `bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}` que devuelve una tupla con la estimacion del rango de $p(x)$ utilizando el metodo de Bernstein.
+Implementar una función
+```julia
+bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}
+```
+que devuelve una tupla con la estimación del rango de $p(x)$ utilizando el método de Bernstein.
+
+En síntesis, este ejercicio requiere implementar las siguientes funciones:
+
+```julia
+bernstein_basis(l::Int, i::Int)::Function
+bernstein_coefficients(pol::Polynomial)::Vector
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})::Vector
+bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}
+```
 
 ---
 
