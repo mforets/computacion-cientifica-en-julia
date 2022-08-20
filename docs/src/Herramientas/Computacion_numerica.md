@@ -266,7 +266,7 @@ bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Nu
 !!! warning "Formato de entrega"
     El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_4` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado. **Importante:** Además debe incluir los archivos de proyecto (`Project.toml` y `Manifest.toml`) en su entrega. 
 
-#### 4.1. Método UCB para el problema de k-bandits 
+#### 4.1. Método UCB para el problema de k-bandits
 
 En este ejercicio revisitamos el problema de k-bandits trabajado en clase. Se implementará el algoritmo llamado upper-confidence-bound (UCB) que se describe a continuación. Sea $A_t$ la acción seleccionada en el tiempo $t$ para $t = 1, \ldots, N$ pasos de tiempo, y sea $Q_t(a)$ el *promedio* de recompensas recibido de la acción $a$ a tiempo $t$.
 
@@ -288,3 +288,14 @@ En este ejercicio construimos sobre el Ejercicio 3.1 combinando las simluaciones
 Independiente de la implementación de `Box` utilizada, ésta debe admitir un constructor con centro (vector) y radio (escalar), e.g. `Box([1.0, 1.0], 1.0)` que representa el conjunto $\{x \in \mathbb{R}^2: \Vert x \Vert_\infty \leq 1 \}$.
 
 Para la estimación se utilizará el algoritmo RK4 y para el muestreo de $X_0$ se utilizará una secuencia de Sobol, pudiéndose utilizar el paquete [Sobol.jl](https://github.com/stevengj/Sobol.jl) para tal fin. La ventaja que tiene utilizar dichas secuencias es que generan una distribución que cubre "cuasi-regularmente" el conjunto de partida.
+
+#### 4.3. Expansión rápida de Bernstein para polinomios univariados
+
+Revisar la implementación del Ejercicio 3.2 y realizar una evaluación de la performance para distintos casos de uso, variando el grado del polinomio. Implementar una versión optimizada que utilice el resultado de la Sección 9.2.1 de la tesis de A. P. Smith. En consecuencia implementar
+
+```julia
+bernstein_coefficients(pol::Polynomial, alg::Algorithm=Fast())::Vector
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Vector
+bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number}, alg::Algorithm=Fast())::Tuple{Number,Number}
+```
+siendo `Fast` un struct que representa el nuevo algoritmo y `Naive` un struct que representa el algoritmo anterior.
