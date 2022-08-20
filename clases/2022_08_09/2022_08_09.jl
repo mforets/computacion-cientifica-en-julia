@@ -62,9 +62,9 @@ f5(x, y) = x + y + 1
 
 
 
-- vimos el ejemplo de Punto
+# - vimos el ejemplo de Punto
 
----
+# ---
 
 ## Diccionario
 
@@ -74,7 +74,7 @@ x[3] = 4
 x[p] = "chau"
 x
 
----
+# ---
 
 ## Ejemplo: algoritmo de ordenamiento de burbuja
 
