@@ -205,13 +205,13 @@ p(x) = \sum_{i=0}^l b_i B_i^l(x),
 ```
 con $l + 1$ coeficientes $b_i$ a determinar. Por ejemplo,
 ```math
-p(x) = -5x^2 + 2x + 3 = = 3(1 - 2x+x^2) + 4(2x - 2x^2) = 3 B_0^2(x) + 4B_1^2(x).
+p(x) = -5x^2 + 2x + 3 = 3(1 - 2x+x^2) + 4(2x - 2x^2) = 3 B_0^2(x) + 4B_1^2(x).
 ```
 Por lo tanto, los coeficientes en la base de potencias son $(a_0, a_1, a_2) = (3, 2, -5)$ mientras que los coeficientes en la base de Bernstein de grado $l = 2$, en el dominio $D = [0, 1]$, son $(b_0, b_1, b_2) = (3, 4, 0)$.
 
 Implementar una función `bernstein_coefficients(pol::Polynomial)` que permite convertir de la base de potencias a la base de Bernstein en el dominio unitario $D =[0, 1]$. La conversion se puede lograr mediante la siguiente formula (ver Teorema (3.9) de la citada tesis para la demostracion):
 ```math
-b_i = \sum_{j = 0}^k \dfrac{binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
+b_i = \sum_{j = 0}^k \dfrac{\binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
 ```
 Por ejemplo
 
