@@ -156,26 +156,81 @@ julia> integrate(lotkavolterra, RK4(h=0.01), 0.0, 1.0, ones(2))
 
 #### 3.2. Evaluación de polinomios por el método de Bernstein
 
-En este ejercicio utilizamos multi-índices $i = (i_1, i_2, \ldots, i_n)$ para representar n-tuplas de números enteros no negativos (lo mismo con $l$). Sea $p: \mathbb{R}^n \to \mathbb{R}$ un polinomio multivariado (en $n$ variables). Dado un polinomio en su forma canónica (es decir en la base de potencias),
+En este ejercicio trabajamos con polinomios univariados $p : \mathbb{R} \to \mathbb{R}$, cuyos coeficientes en la base de potencias notamos $\{a_i\}_{i=0}^l$ siendo $l \in \mathbb{N}$ el *grado* del polinomio. Notese que dicho polinomio, cuando se expande de potencia, tiene lo sumo $l+1$ terminos no nulos,
+```math
+p(x) = a_0 + a_1 x + \ldots + a_l x^l.
+```
+Para trabajar de manera conveniente con esta clase de polinomios en Julia trabajaremos con el paquete [Polynomials.jl](https://github.com/JuliaMath/Polynomials.jl). Por ejemplo, para definir el polinomio
 
 ```math
-p(x) = \sum_{i=0}^l a_i x^i,\qquad x = (x_1, \ldots, x_n),
+p(x) = 3x^2 - 2x + 1
 ```
-nos interesa expresarlo en una base diferente llamada la *base de Bernstein*. Gráficos de los polinomios de la base de Bernstein, $B_i^l(x)$, se pueden apreciar en la Figura 3.1 de [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012). En este ejercicio se debe implementar la ecuación (3.13) en dicha tesis, es decir, aquella que permite encontrar los coeficientes de $p$ en la base de Bernstein,
+escribimos:
+```julia
+julia> using Polynomials
 
+julia> p = Polynomial([1, -2, 3])
+Polynomial(1 - 2*x + 3*x^2)
+```
+Notese que el orden mas bajo se ingresa primero. Consultar la documentacion de [Polynomials.jl](https://juliamath.github.io/Polynomials.jl/stable/) por mas casos de uso.
+
+En este ejercicio nos interesa utilizar un metodo llamado *expansion de Bernstein* que permite, entre otras cosas, calcular extremos (maximos y minimos) de polinomios en un dominio dado. Dicho metodo tambien permite trabajar con polinomios multivariados, pero eso lo analizaremos en un entregable mas adelante. Como referencia ver [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012).
+
+El primer paso en este ejercicio es implementar una funcion `bernstein_basis(l, i)` que devuelve una funcion que se corresponde con el polinomio de Bernstein $i$-esimo polinomio de Bernstein de grado $l$, definido mediante la formula
+
+```math
+B_i^l(x) = \binom{l}{i}x^i (1 - x)^{l-i},\qquad i = 0, \ldots, l.
+```
+Se adopta la convencion de que $B_i^l(x) = 0$ para todo $x$ si $i < 0$ o si $i > l$. Por ejemplo,
+
+```julia
+julia> p = bernstein_basis(3, 1)
+#1 (generic function with 1 method)
+
+julia> p_test = Polynomial([0, 3, -6, 3])
+Polynomial(3*x - 6*x^2 + 3*x^3)
+
+julia> sum(abs(p(x) - p_test(x)) for x in rand(1_000))
+5.703991186984617e-14
+```
+Se recomienda corroborar su implementacion con los graficos de la Figura 3.1 de la citada tesis.
+
+Notese que, dado un polinomio en la base de potencias
+```math
+p(x) = \sum_{i=0}^l a_i x^k,
+```
+su expresion en la base de Bernstein es
 ```math
 p(x) = \sum_{i=0}^l b_i B_i^l(x),
 ```
-donde $b_i$ son los coeficientes de Bernstein a determinar. Por conveniencia incluímos aquí la mencionada fórmula:
+con $l + 1$ coeficientes $b_i$ a determinar. Por ejemplo,
+```math
+p(x) = -5x^2 + 2x + 3 = = 3(1 - 2x+x^2) + 4(2x - 2x^2) = 3 B_0^2(x) + 4B_1^2(x).
+```
+Por lo tanto, los coeficientes en la base de potencias son $(a_0, a_1, a_2) = (3, 2, -5)$ mientras que los coeficientes en la base de Bernstein de grado $l = 2$, en el dominio $D = [0, 1]$, son $(b_0, b_1, b_2) = (3, 4, 0)$.
 
+Implementar una función `bernstein_coefficients(pol::Polynomial)` que permite convertir de la base de potencias a la base de Bernstein en el dominio unitario $D =[0, 1]$. La conversion se puede lograr mediante la siguiente formula (ver Teorema (3.9) de la citada tesis para la demostracion):
+```math
+b_i = \sum_{j = 0}^k \dfrac{binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
+```
+Por ejemplo
+
+```julia
+julia> p = Polynomial([3, 2, -5])
+[3, 4, 0]
+```
+
+Cuando el dominio de interes no es el intervalo unitario, se requiere utilizar una formula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio ("intervalo"). Implementar una función `bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})` que recibe un polinomio (tipo `Polynomial`) y devuelve en un vector los $l+1$ coeficientes de Bernstein ($b_i$) asociados de grado $l$ en $X$ (representado como una tupla de numeros). Para ello se utilizara el resultado (ver ecuacion ecuación (3.13) de la citada tesis):
 ```math
 b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j \sum_{k=j}^l \binom{k}{j}\underline{x}^{k-j}a_k,\qquad 0 \leq i \leq l.
 ```
 
-Sea $X = [\underline{x}_1, \bar{x}_1] \times \cdots \times [\underline{x}_n, \bar{x}_n] := [\underline{x}, \bar{x}]$ un dominio rectangular ("caja").
+Finalmente, una de las propiedades mas interesantes de la expansion de Bernstein consiste en el hecho de que los coeficientes de la expansion permite una forma rapida de evaluar el *rango* del polinomio en el dominio $D$ dado, resultado que se conoce como *Bernstein enclosure*. Concretamente,
 
-Implementar una función `bernstein_coefficients(pol, X)` que recibe un polinomio definido en el paquete [`DynamicPolynomials.jl`](https://github.com/JuliaAlgebra/DynamicPolynomials.jl) y devuelve los coeficientes de Bernstein ($b_i$) asociados de grado $l$ (para $l$ suficientemente grande) en el dominio $X$.
-
+```math
+\min_{i} \{ b_i \} \leq p(x) \max_{i} \{b_i\},\qquad x \in D. 
+```
+Implementar una funcion `bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}` que devuelve una tupla con la estimacion del rango de $p(x)$ utilizando el metodo de Bernstein.
 
 ---
 
