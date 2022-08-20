@@ -220,7 +220,11 @@ julia> p = Polynomial([3, 2, -5])
 [3, 4, 0]
 ```
 
-Cuando el dominio de interes no es el intervalo unitario, se requiere utilizar una formula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio ("intervalo"). Implementar una función `bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})` que recibe un polinomio (tipo `Polynomial`) y devuelve en un vector los $l+1$ coeficientes de Bernstein ($b_i$) asociados de grado $l$ en $X$ (representado como una tupla de numeros). Para ello se utilizara el resultado (ver ecuacion ecuación (3.13) de la citada tesis):
+Cuando el dominio de interes no es el intervalo unitario, se requiere utilizar una formula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio ("intervalo"). Implementar una función
+```julia
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})
+```
+que recibe un polinomio (tipo `Polynomial`) y devuelve en un vector los $l+1$ coeficientes de Bernstein ($b_i$) asociados de grado $l$ en $X$ (representado como una tupla de numeros). Para ello se utilizara el resultado (ver ecuacion ecuación (3.13) de la citada tesis):
 ```math
 b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j \sum_{k=j}^l \binom{k}{j}\underline{x}^{k-j}a_k,\qquad 0 \leq i \leq l.
 ```
@@ -228,7 +232,7 @@ b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j
 Finalmente, una de las propiedades mas interesantes de la expansion de Bernstein consiste en el hecho de que los coeficientes de la expansion permite una forma rapida de evaluar el *rango* del polinomio en el dominio $D$ dado, resultado que se conoce como *Bernstein enclosure*. Concretamente,
 
 ```math
-\min_{i} \{ b_i \} \leq p(x) \max_{i} \{b_i\},\qquad x \in D. 
+\min_{i} \{ b_i \} \leq p(x) \leq \max_{i} \{b_i\},\qquad x \in D. 
 ```
 Implementar una funcion `bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}` que devuelve una tupla con la estimacion del rango de $p(x)$ utilizando el metodo de Bernstein.
 
