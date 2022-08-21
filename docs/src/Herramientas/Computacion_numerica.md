@@ -246,7 +246,7 @@ Una de las propiedades más interesantes de la expansión de Bernstein es que lo
 ```
 Implementar una función
 ```julia
-bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number})::Tuple{Number,Number}
 ```
 que devuelve una tupla con la estimación del rango de $p(x)$ utilizando el método de Bernstein.
 
@@ -256,7 +256,7 @@ En síntesis, este ejercicio requiere implementar las siguientes funciones:
 bernstein_basis(l::Int, i::Int)::Function
 bernstein_coefficients(pol::Polynomial)::Vector
 bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})::Vector
-bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number})::Tuple{Number,Number}
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number})::Tuple{Number,Number}
 ```
 
 ---
@@ -296,6 +296,6 @@ Revisar la implementación del Ejercicio 3.2 y realizar una evaluación de la pe
 ```julia
 bernstein_coefficients(pol::Polynomial, alg::Algorithm=Fast())::Vector
 bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Vector
-bernstein_enclosure(pol::Polynomial, dom::Tuple{Number,Number}, alg::Algorithm=Fast())::Tuple{Number,Number}
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Tuple{Number,Number}
 ```
 siendo `Fast` un struct que representa el nuevo algoritmo y `Naive` un struct que representa el algoritmo anterior.
