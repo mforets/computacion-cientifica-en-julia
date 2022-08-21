@@ -277,9 +277,13 @@ A_t := \argmax_{a} \left( Q_t(a) + c \sqrt{\dfrac{\ln t}{N_t(a)}} \right),
 ```
 donde $\ln t$ es el logaritmo (natural) del número de jugada actual, $N_t(a)$ es el número de veces que la acción $a$ ha sido seleccionada anteriormente a la jugada $t$-ésima, y la constante $c > 0$ es un parámetro del algoritmo que controla el grado de *exploración*. Si $N_t(a)$ es igual a cero, se considera que $a$ maximiza la expresión. Si hay más de un maximizador, se escoge uno de ellos al azar (de manera uniforme).
 
-La idea del algoritmo es seleccionar aquellas acciones (palancas) de acuerdo a su potencial de ser óptimas, tomando en cuenta tanto el estimado del mejor valor actual, como también la incertidumbre asociada a dicha estimación.
+La idea del algoritmo es seleccionar aquellas acciones ("palancas") de acuerdo a su potencial de ser óptimas, tomando en cuenta tanto el estimado del mejor valor actual, como también la incertidumbre asociada a dicha estimación.
 
-Implementar una función `simular(::Maquina, ::UCB; N::Int=1000)` que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
+Extender la función `simular` trabajada en clase agregando el método:
+```julia
+simular(J::Juego, alg::UCB; budget::Int = 1000)
+```
+que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
 
 #### 4.2. Conjunto alcanzable mediante simulaciones
 
@@ -291,11 +295,11 @@ Para la estimación se utilizará el algoritmo RK4 y para el muestreo de $X_0$ s
 
 #### 4.3. Expansión rápida de Bernstein para polinomios univariados
 
-Revisar la implementación del Ejercicio 3.2 y realizar una evaluación de la performance para distintos casos de uso, variando el grado del polinomio. Implementar una versión optimizada que utilice el resultado de la Sección 9.2.1 de la tesis de A. P. Smith. En consecuencia implementar
+En este ejercicio revisitamos la expansión de Bernstein para polinomios univariados del Ejercicio 3.2. Se debe implementar una versión optimizada utilizando el resultado de la Sección 9.2.1 de la tesis de A. P. Smith. Se deben implementar los siguientes métodos:
 
 ```julia
 bernstein_coefficients(pol::Polynomial, alg::Algorithm=Fast())::Vector
 bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Vector
 bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Tuple{Number,Number}
 ```
-siendo `Fast` un struct que representa el nuevo algoritmo y `Naive` un struct que representa el algoritmo anterior.
+siendo `Fast` un struct que representa el nuevo algoritmo y `Naive` un struct que representa el algoritmo anterior. Comparar el tiempo de ejecución y el número de alocaciones de cada algoritmo utilizando [`BenchmarkTools.jl`](https://github.com/JuliaCI/BenchmarkTools.jl).
