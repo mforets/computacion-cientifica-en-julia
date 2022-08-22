@@ -156,26 +156,108 @@ julia> integrate(lotkavolterra, RK4(h=0.01), 0.0, 1.0, ones(2))
 
 #### 3.2. Evaluación de polinomios por el método de Bernstein
 
-En este ejercicio utilizamos multi-índices $i = (i_1, i_2, \ldots, i_n)$ para representar n-tuplas de números enteros no negativos (lo mismo con $l$). Sea $p: \mathbb{R}^n \to \mathbb{R}$ un polinomio multivariado (en $n$ variables). Dado un polinomio en su forma canónica (es decir en la base de potencias),
+En este ejercicio trabajamos con polinomios univariados $p : \mathbb{R} \to \mathbb{R}$, cuyos coeficientes en la base de potencias notamos $\{a_i\}_{i=0}^l$ siendo $l \in \mathbb{N}$ el *grado* del polinomio ($a_l \neq 0$). Tiene así a lo sumo $l+1$ términos (monomios) no nulos y escribimos:
+```math
+p(x) = a_0 + a_1 x + \ldots + a_l x^l.
+```
+Para trabajar con polinomios univariados en Julia utilizaremos [Polynomials.jl](https://github.com/JuliaMath/Polynomials.jl). Por ejemplo, sea
 
 ```math
-p(x) = \sum_{i=0}^l a_i x^i,\qquad x = (x_1, \ldots, x_n),
+p(x) = 3x^2 - 2x + 1.
 ```
-nos interesa expresarlo en una base diferente llamada la *base de Bernstein*. Gráficos de los polinomios de la base de Bernstein, $B_i^l(x)$, se pueden apreciar en la Figura 3.1 de [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012). En este ejercicio se debe implementar la ecuación (3.13) en dicha tesis, es decir, aquella que permite encontrar los coeficientes de $p$ en la base de Bernstein,
+Podemos definirlo como un `Polynomials.Polynomial` así:
+```julia
+julia> using Polynomials
 
+julia> p = Polynomial([1, -2, 3])
+Polynomial(1 - 2*x + 3*x^2)
+```
+Nótese que el órden más bajo se ingresa primero. Consultar la documentación de [Polynomials.jl](https://juliamath.github.io/Polynomials.jl/stable/) por más casos de uso.
+
+El método llamado *expansion de Bernstein* permite, entre otras cosas, calcular extremos (máximos y mínimos) de polinomios en un dominio dado, de manera aproximada pero rápida. Dicho método también aplica a polinomios multivariados, pero dejaremos esa generalización para un entregable futuro. Como referencia, tanto para el caso univariado como para el multivariado, ver [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012).
+
+El primer paso en este ejercicio consiste en implementar una función
+```julia
+bernstein_basis(l::Int, i::Int)::Function
+```
+que devuelve el polinomio de Bernstein $i$-ésimo de grado $l$, definido mediante la fórmula
+
+```math
+B_i^l(x) = \binom{l}{i}x^i (1 - x)^{l-i},\qquad i = 0, \ldots, l.
+```
+Se adopta la convención de que $B_i^l(x) = 0$ para todo $x$ si $i < 0$ o si $i > l$.
+
+Por ejemplo, $B^3_1(x) = 3x^3 - 6x^2 + 3x$:
+```julia
+julia> p = bernstein_basis(3, 1)
+#1 (generic function with 1 method)
+
+julia> p_test = Polynomial([0, 3, -6, 3])
+Polynomial(3*x - 6*x^2 + 3*x^3)
+
+julia> sum(abs(p(x) - p_test(x)) for x in rand(1_000))
+5.703991186984617e-14
+```
+Se recomienda corroborar su implementación con los gráficos de la Figura 3.1 de la citada tesis.
+
+Dado un polinomio en la base de potencias
+```math
+p(x) = \sum_{i=0}^l a_i x^i,
+```
+su expresión en la base de Bernstein de grado $l$ en el dominio unitario $X = [0, 1]$ es:
 ```math
 p(x) = \sum_{i=0}^l b_i B_i^l(x),
 ```
-donde $b_i$ son los coeficientes de Bernstein a determinar. Por conveniencia incluímos aquí la mencionada fórmula:
+con $l + 1$ coeficientes $\{b_i\}$ a determinar. Por ejemplo:
+```math
+p(x) = -5x^2 + 2x + 3 = 3(1 - 2x+x^2) + 4(2x - 2x^2) = 3 B_0^2(x) + 4B_1^2(x).
+```
+Así, en este ejemplo los coeficientes en la base de potencias son $(a_0, a_1, a_2) = (3, 2, -5)$ mientras que los coeficientes en la base de Bernstein de grado $l = 2$ son $(b_0, b_1, b_2) = (3, 4, 0)$.
 
+Implementar una función
+```julia
+bernstein_coefficients(pol::Polynomial)::Vector
+```
+que permite convertir de la base de potencias a la base de Bernstein. La conversión se puede lograr mediante la siguiente fórmula (ver Teorema (3.2) de la citada tesis para la demostración):
+```math
+b_i = \sum_{j = 0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}a_j,\qquad 0 \leq i \leq l.
+```
+En el ejemplo anterior,
+```julia
+julia> p = Polynomial([3, 2, -5])
+Polynomial(3 + 2*x - 5*x^2)
+
+julia> bernstein_coefficients(p)
+[3, 4, 0]
+```
+Cuando el dominio de interés no es el intervalo unitario, se requiere utilizar una fórmula de transformacion generalizada. Sea $X = [\underline{x}, \bar{x}]$ un dominio (intervalo) arbitrario, $\underline{x} <  \bar{x}$. Implementar una función
+```julia
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})::Vector
+```
+que recibe un polinomio y devuelve en un vector los $l+1$ coeficientes de Bernstein $\{b_i\}$ asociados de grado $l$ en $X$ (representado como una tupla de números). Para ello se utilizará el siguiente resultado (ver ecuación (3.13) de la citada tesis):
 ```math
 b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j \sum_{k=j}^l \binom{k}{j}\underline{x}^{k-j}a_k,\qquad 0 \leq i \leq l.
 ```
 
-Sea $X = [\underline{x}_1, \bar{x}_1] \times \cdots \times [\underline{x}_n, \bar{x}_n] := [\underline{x}, \bar{x}]$ un dominio rectangular ("caja").
+Una de las propiedades más interesantes de la expansión de Bernstein es que los coeficientes de la expansión contienen información sobre el *rango* del polinomio en el dominio $X$ dado, resultado que se conoce como *Bernstein enclosure*. Concretamente,
 
-Implementar una función `bernstein_coefficients(pol, X)` que recibe un polinomio definido en el paquete [`DynamicPolynomials.jl`](https://github.com/JuliaAlgebra/DynamicPolynomials.jl) y devuelve los coeficientes de Bernstein ($b_i$) asociados de grado $l$ (para $l$ suficientemente grande) en el dominio $X$.
+```math
+\min_{i} \{ b_i \} \leq p(x) \leq \max_{i} \{b_i\},\qquad x \in X. 
+```
+Implementar una función
+```julia
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number})::Tuple{Number,Number}
+```
+que devuelve una tupla con la estimación del rango de $p(x)$ utilizando el método de Bernstein.
 
+En síntesis, este ejercicio requiere implementar las siguientes funciones:
+
+```julia
+bernstein_basis(l::Int, i::Int)::Function
+bernstein_coefficients(pol::Polynomial)::Vector
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number})::Vector
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number})::Tuple{Number,Number}
+```
 
 ---
 
@@ -184,7 +266,7 @@ Implementar una función `bernstein_coefficients(pol, X)` que recibe un polinomi
 !!! warning "Formato de entrega"
     El formato de entrega es análogo al utilizado en los entregables anteriores, ver [Ejercicio 1.2 Creación de un repositorio](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Entorno_de_desarrollo/#.2.-Creaci%C3%B3n-de-un-repositorio). En particular, todos los ejercicios entregados deben ser parte de un único módulo llamado `Entregable_4` que define la constante CI asi como también exporta las funciones que se piden en cada ejercicio entregado. **Importante:** Además debe incluir los archivos de proyecto (`Project.toml` y `Manifest.toml`) en su entrega. 
 
-#### 4.1. Método UCB para el problema de k-bandits 
+#### 4.1. Método UCB para el problema de k-bandits
 
 En este ejercicio revisitamos el problema de k-bandits trabajado en clase. Se implementará el algoritmo llamado upper-confidence-bound (UCB) que se describe a continuación. Sea $A_t$ la acción seleccionada en el tiempo $t$ para $t = 1, \ldots, N$ pasos de tiempo, y sea $Q_t(a)$ el *promedio* de recompensas recibido de la acción $a$ a tiempo $t$.
 
@@ -195,9 +277,13 @@ A_t := \argmax_{a} \left( Q_t(a) + c \sqrt{\dfrac{\ln t}{N_t(a)}} \right),
 ```
 donde $\ln t$ es el logaritmo (natural) del número de jugada actual, $N_t(a)$ es el número de veces que la acción $a$ ha sido seleccionada anteriormente a la jugada $t$-ésima, y la constante $c > 0$ es un parámetro del algoritmo que controla el grado de *exploración*. Si $N_t(a)$ es igual a cero, se considera que $a$ maximiza la expresión. Si hay más de un maximizador, se escoge uno de ellos al azar (de manera uniforme).
 
-La idea del algoritmo es seleccionar aquellas acciones (palancas) de acuerdo a su potencial de ser óptimas, tomando en cuenta tanto el estimado del mejor valor actual, como también la incertidumbre asociada a dicha estimación.
+La idea del algoritmo es seleccionar aquellas acciones ("palancas") de acuerdo a su potencial de ser óptimas, tomando en cuenta tanto el estimado del mejor valor actual, como también la incertidumbre asociada a dicha estimación.
 
-Implementar una función `simular(::Maquina, ::UCB; N::Int=1000)` que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
+Extender la función `simular` trabajada en clase agregando el método:
+```julia
+simular(J::Juego, alg::UCB; budget::Int = 1000)
+```
+que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al algoritmo que debe almacenar el parámetro de diseño, con un valor por defecto de $c=2$.
 
 #### 4.2. Conjunto alcanzable mediante simulaciones
 
@@ -206,3 +292,14 @@ En este ejercicio construimos sobre el Ejercicio 3.1 combinando las simluaciones
 Independiente de la implementación de `Box` utilizada, ésta debe admitir un constructor con centro (vector) y radio (escalar), e.g. `Box([1.0, 1.0], 1.0)` que representa el conjunto $\{x \in \mathbb{R}^2: \Vert x \Vert_\infty \leq 1 \}$.
 
 Para la estimación se utilizará el algoritmo RK4 y para el muestreo de $X_0$ se utilizará una secuencia de Sobol, pudiéndose utilizar el paquete [Sobol.jl](https://github.com/stevengj/Sobol.jl) para tal fin. La ventaja que tiene utilizar dichas secuencias es que generan una distribución que cubre "cuasi-regularmente" el conjunto de partida.
+
+#### 4.3. Expansión rápida de Bernstein para polinomios univariados
+
+En este ejercicio revisitamos la expansión de Bernstein para polinomios univariados del Ejercicio 3.2. Se debe implementar una versión optimizada utilizando el resultado de la Sección 9.2.1 de la tesis de A. P. Smith. Se deben implementar los siguientes métodos:
+
+```julia
+bernstein_coefficients(pol::Polynomial, alg::Algorithm=Fast())::Vector
+bernstein_coefficients(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Vector
+bernstein_enclosure(pol::Polynomial, X::Tuple{Number,Number}, alg::Algorithm=Fast())::Tuple{Number,Number}
+```
+siendo `Fast` un struct que representa el nuevo algoritmo y `Naive` un struct que representa el algoritmo anterior. Comparar el tiempo de ejecución y el número de alocaciones de cada algoritmo utilizando [`BenchmarkTools.jl`](https://github.com/JuliaCI/BenchmarkTools.jl).
