@@ -60,17 +60,35 @@ $f(a+b\epsilon)=f(a)+b f^{\prime}(a)\epsilon$
 
 Por lo tanto, si pasamos un número dual a $f$, obtenemos $f$ y $f^{\prime}$ en una sola evaluación.
 
-Con este procedimiento, para calcular el gradiente de una función que depende de $n$ variables, debemos recorrer $n$ veces el grafo.
+Con este procedimiento, para calcular el gradiente de una función que depende de $n$ variables, debemos recorrer $n$ veces el grafo. Por esto, la acumulación hacia adelante es recomendada cuando el número de outputs es mucho mayor que el número de inputs.
+
+Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
+
+![Grafo computacional: Forward accumulation (Wiki)](./Figures/Wiki_ForwardAccumulationAutomaticDifferentiation.png)
 
 ### Acumulación reversa (*Reverse accumulation*)
 
 La acumulación reversa requiere de una sola corrida para calcular el gradiente de $f$, independientemente de la cantidad de variables de las que depende, pero requiere de dos recorridas del grafo: una pasada hacia adelante (*forward pass*), en la que se computan todos los valores intermedios necesarios, y otra pasada hacia atrás (*backward pass*), que es la que computa el gradiente.
 
-$\dfrac{df}{da} = \dfrac{df}{d c_4 } \dfrac{d c_4 }{da}=\left(\dfrac{df}{dc_3}\dfrac{dc_3}{dc_4}\right)\dfrac{dc_4}{da} = \left(\left(\dfrac{df}{dc_2}\dfrac{dc_2}{dc_3}+\dfrac{df}{dc_1}\dfrac{dc_1}{dc_3}\right)\dfrac{dc_3}{dc_4}\right)\dfrac{dc_4}{da}$
+El procedimiento consiste en explotar la relación:
 
-Notar el orden inverso en que se aplica la regla de la cadena, en comparación con la acumulación hacia adelante. Si bien en el caso de la acumulación reversa, solo se debe hacer una corrida (en comparación con las $n$ corridas necesarias en la acumulación hacia adelante para computar un gradiente en dimensión $n$), cuando se evalúan las derivadas (recorriendo el grafo hacia atrás), es necesario tener en memoria los valores intermedios de todas las variables intermedias (que fueron calculadas en el paso hacia adelante). Si el grafo es grande, el requerimiento de memoria puede ser excesivo.
+$\displaystyle \bar{c_i} = \dfrac{\partial f}{\partial c_i} = \sum_{j: \ j \mathrm{ \ es \ hijo \ de \ } i} \bar{c_j} \dfrac{\partial c_j}{\partial c_i}$,
 
+donde $\bar{c_i}$ es el "adjunto" de $c_i$. Para derivar $f$ respecto de $a$, se sigue el grafo desde el final hasta el principio, aplicando esta relación recursiva.
 
+En el caso de la acumulación reversa, solo se debe hacer una corrida hacia adelante (en comparación con las $n$ corridas necesarias en la acumulación hacia adelante para computar un gradiente en dimensión $n$), pero se deben tener todas las en memoria la relación entre cada variable intermedia y su derivada respecto de los nodos "hijos" en el grafo, que fueron calculadas en el paso hacia adelante. Si el grafo es grande (número de inputs mucho mayor que de outputs), el requerimiento de memoria puede ser excesivo.
+
+Ejemplo:
+
+![Grafo computacional: Reverse accumulation](./Figures/ejemplo_backward_pass.png)
+
+Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
+
+![Grafo computacional: Reverse accumulation (Wiki)](./Figures/Wiki_ReverseaccumulationAD.png)
+
+### Link recomendado:
+
+["What is Automatic Differentiation?"](https://www.youtube.com/watch?v=wG_nF1awSSY)
 
 ---
 
