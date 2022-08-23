@@ -289,7 +289,7 @@ que implementa el algoritmo anterior. Se utilizará un struct `UCB` asociado al 
 
 En este ejercicio construimos sobre el Ejercicio 3.1 combinando las simluaciones con [conjuntos en espacios Euclídeos](https://en.wikipedia.org/wiki/Euclidean_space). Se debe escribir una función `reachable_set(f::Function, ::RK4, t0, T, X0::Box)` que devuelve otro conjunto $Y$ tal que $Y$ es una estimación, obtenida mediante simulación numérica de los estados alcanzables en el tiempo $T$.
 
-Independiente de la implementación de `Box` utilizada, ésta debe admitir un constructor con centro (vector) y radio (escalar), e.g. `Box([1.0, 1.0], 1.0)` que representa el conjunto $\{x \in \mathbb{R}^2: \Vert x \Vert_\infty \leq 1 \}$.
+Independiente de la implementación de `Box` utilizada, ésta debe admitir un constructor con centro (vector) y radio (escalar), e.g. `Box([1.0, 1.0], 1.0)` que representa el conjunto $\{x \in \mathbb{R}^2: \Vert x - c\Vert_\infty \leq 1 \}$ donde $c$ es el centro (en el ejemplo, $c = [1, 1]$).
 
 Para la estimación se utilizará el algoritmo RK4 y para el muestreo de $X_0$ se utilizará una secuencia de Sobol, pudiéndose utilizar el paquete [Sobol.jl](https://github.com/stevengj/Sobol.jl) para tal fin. La ventaja que tiene utilizar dichas secuencias es que generan una distribución que cubre "cuasi-regularmente" el conjunto de partida.
 
