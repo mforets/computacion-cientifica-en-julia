@@ -8,6 +8,70 @@
 
 CH 2.4 de Kochenderfer, M. J., & Wheeler, T. A. (2019). Algorithms for optimization. Mit Press.
 
+
+Las técnicas de diferenciación automática (AD) son algoritmos para evaluar numéricamente las derivadas de funciones especificadas por un programa computacional. La AD explota el hecho de que, independientemente de su complejidad, todo programa computacional ejecuta una secuencia de opraciones matemáticas elementales (suma, resta, multiplicación, división, etc.) y funciones elementales ($\exp$, $\log$, $\sin$, $\cos$, etc.). La AD aplica repetidamente la regla de la cadena para calcular, de forma automática, la derivada, de cualquier orden, de estas operaciones y funciones elementales.
+
+La AD es diferente a la diferenciación simbólica y a la diferenciación numérica. La diferenciación simbólica consiste en transformar el programa computacional en una expresión matemática. La diferenciación numérica, como ser diferencias finitas, requiere de una discretización, que conlleva un error de truncamiento y de cancelación. Además, estos dos últimos pueden ser ineficientes cuando el número de inputs es alto, y requiere de la aplicación de algoritmos de optimización basados en el gradiente.
+
+La AD se basa en la regla de la cadena:
+
+$
+\dfrac{d}{dx} f(g(x)) = \dfrac{d}{dx} (f \circ g) = \dfrac{df}{dg}\dfrac{dg}{dx}
+$
+
+Consideremos la función $f(a,b) = \ln(ab+\max(a, 2))$.
+
+La derivada de $f$ respecto de $a$ resulta:
+
+$\dfrac{\partial f}{\partial a} = \dfrac{1}{ab+\max(a, 2)}[b + (2<a)]$.
+
+El proceso detrás de este cálculo se puede automatizar por medio de un grafo computacional. Estos grafos representan una funcion donde los nodos son operaciones y las aristas son relaciones input-output. Las hojas del grafo son las variables input y las constantes involucradas, mientras que los nodos terminales son los otuput de la función.
+
+![Grafo computacional](./Figures/comp_graph.png)
+
+Existen dos métodos para derivar $f$ automáticamente usando su grafo computacional: la acumulación hacia adelante, que atraviesa el grafo en la dirección inputs$\to$outputs usando números duales, y la acumlación reversa, que requiere de una recorrida del grafo hacia atrás.
+
+### Acumulación hacia adelante (*Forward accumulation*) 
+
+Este método usa una única pasada del grafo computacional y es equivalente a expandir iterativamente la regla de la cadena de las operaciones internas. Cuando $f$ depende de varias variables, se debe hacer una recorrida del grafo por cada derivada parcial. Por ejemplo:
+
+$\dfrac{df}{da} = \dfrac{df}{d c_4 } \dfrac{d c_4 }{da}=\dfrac{df}{dc_4}\left(\dfrac{dc_4}{dc_3}\dfrac{dc_3}{da}\right) = \dfrac{df}{dc_4}\left(\dfrac{dc_4}{dc_3}\left(\dfrac{dc_3}{dc_2}\dfrac{dc_2}{da}+\dfrac{dc_3}{dc_1}\dfrac{dc_1}{da}\right)\right)$
+
+En color azul se representan las evaluaciones de las variables sucesivas, mientras en color rojo las derivadas respecto de $a$. El procedimiento es el siguiente:
+
+1. Comenzamos desde los nodos de inputs y de valores constantes. Allí calculamos su valor y el valor de la derivada respecto de $a$. Por ejemplo, para $a=3$, $b=2$, este paso sería:
+
+![Grafo computacional: Forward accumulation](./Figures/fwd_graph_1.png)
+
+2. Luego, procedemos a recorrer el árbol, nodo por nodo, calculando el valor de la variable en el nodo y de la derivada. Para ello, debemos escoger el nodo a recorrer en cada paso de manera que ya conozcamos o hayamos calculado los inputs. Así obtenemos el siguiente grafo:
+
+![Grafo computacional: Forward accumulation](./Figures/fwd_graph.png)
+
+
+Este cálculo puede ser automatizado en una computadora si utilizamos los "números duales", que permiten calcular a la vez el valor de la función y de su derivada en cada nodo con una sola operación. Los números duales se escriben de manera similar a los complejos, $a+b \epsilon$, pero tal que $\epsilon^2=0$. Por lo tanto:
+
+$(a+b \epsilon) + (c+d \epsilon) = (a+c)+ (b+d) \epsilon$
+
+$(a+b \epsilon) \times (c+d \epsilon) = (ab)+ (ad+bc)\epsilon$
+
+Si escribimos la expansión de Taylor de $f(x)$ en torno a $a$, $f(x)=\displaystyle \sum_{k=0}^{\infty}\dfrac{f^{(k)}(a)}{k!}(x-a)^k$, se obtiene que:
+
+$f(a+b\epsilon)=f(a)+b f^{\prime}(a)\epsilon$
+
+Por lo tanto, si pasamos un número dual a $f$, obtenemos $f$ y $f^{\prime}$ en una sola evaluación.
+
+Con este procedimiento, para calcular el gradiente de una función que depende de $n$ variables, debemos recorrer $n$ veces el grafo.
+
+### Acumulación reversa (*Reverse accumulation*)
+
+La acumulación reversa requiere de una sola corrida para calcular el gradiente de $f$, independientemente de la cantidad de variables de las que depende, pero requiere de dos recorridas del grafo: una pasada hacia adelante (*forward pass*), en la que se computan todos los valores intermedios necesarios, y otra pasada hacia atrás (*backward pass*), que es la que computa el gradiente.
+
+$\dfrac{df}{da} = \dfrac{df}{d c_4 } \dfrac{d c_4 }{da}=\left(\dfrac{df}{dc_3}\dfrac{dc_3}{dc_4}\right)\dfrac{dc_4}{da} = \left(\left(\dfrac{df}{dc_2}\dfrac{dc_2}{dc_3}+\dfrac{df}{dc_1}\dfrac{dc_1}{dc_3}\right)\dfrac{dc_3}{dc_4}\right)\dfrac{dc_4}{da}$
+
+Notar el orden inverso en que se aplica la regla de la cadena, en comparación con la acumulación hacia adelante. Si bien en el caso de la acumulación reversa, solo se debe hacer una corrida (en comparación con las $n$ corridas necesarias en la acumulación hacia adelante para computar un gradiente en dimensión $n$), cuando se evalúan las derivadas (recorriendo el grafo hacia atrás), es necesario tener en memoria los valores intermedios de todas las variables intermedias (que fueron calculadas en el paso hacia adelante). Si el grafo es grande, el requerimiento de memoria puede ser excesivo.
+
+
+
 ---
 
 
