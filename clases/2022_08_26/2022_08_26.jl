@@ -1,6 +1,6 @@
 # Pluto.jl notebooks
 
-] add Pluto
+# ] add Pluto
 using Pluto
 Pluto.run()
 
