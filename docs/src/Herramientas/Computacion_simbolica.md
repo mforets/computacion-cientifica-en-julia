@@ -63,6 +63,47 @@ Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
 
 ![Grafo computacional: Forward accumulation (Wiki)](./Figures/Wiki_ForwardAccumulationAutomaticDifferentiation.png)
 
+
+Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ para $a=3$, $b=2$ con el método de acumulación hacia adelante:
+
+1- Definimos el `struct` para representar los números duales
+
+```julia
+struct Dual
+	v
+	∂
+end
+
+Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
+
+Base.:*(a::Dual, b::Dual) = Dual(a.v * b.v, a.v*b.∂ + b.v*a.∂)
+
+Base.log(a::Dual) = Dual(log(a.v), a.∂/a.v)
+
+function Base.max(a::Dual, b::Dual)
+	v = max(a.v, b.v)
+	∂ = a.v > b.v ? a.∂ : a.v < b.v ? b.∂ : NaN
+	return Dual(v, ∂)
+end
+
+function Base.max(a::Dual, b::Int)
+	v = max(a.v, b)
+	∂ = a.v > b ? a.∂ : a.v < b ? 0 : NaN
+	return Dual(v, ∂)
+end
+```
+
+2- Computamos el gradiente en $a=3$, $b=2$ con el paquete `ForwardDiff.jl`:
+
+```julia
+using ForwardDiff
+
+a = ForwardDiff.Dual(3,1);
+b = ForwardDiff.Dual(2,0);
+
+log(a*b + max(a,2)) # Forward Differentitaion
+```
+
 ### Acumulación reversa (*Reverse accumulation*)
 
 La acumulación reversa requiere de una sola corrida para calcular el gradiente de $f$, independientemente de la cantidad de variables de las que depende, pero requiere de dos recorridas del grafo: una pasada hacia adelante (*forward pass*), en la que se computan todos los valores intermedios necesarios, y otra pasada hacia atrás (*backward pass*), que es la que computa el gradiente.
@@ -83,49 +124,19 @@ Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
 
 ![Grafo computacional: Reverse accumulation (Wiki)](./Figures/Wiki_ReverseaccumulationAD.png)
 
+Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ para $a=3$, $b=2$ con el método de acumulación reversa:
+
+```julia
+using Zygote: gradient
+
+f(a, b) = log(a*b + max(a,2))
+
+gradient(f, 3.0, 2.0) # Reverse Accumulation
+```
+
 ### Link recomendado:
 
 ["What is Automatic Differentiation?"](https://www.youtube.com/watch?v=wG_nF1awSSY)
-
-
-### Implementación en Julia
-
-
-```julia
-struct Dual
-	v
-	∂
-end
-
-Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
-Base.:*(a::Dual, b::Dual) = Dual(a.v * b.v, a.v*b.∂ + b.v*a.∂)
-Base.log(a::Dual) = Dual(log(a.v), a.∂/a.v)
-
-function Base.max(a::Dual, b::Dual)
-	v = max(a.v, b.v)
-	∂ = a.v > b.v ? a.∂ : a.v < b.v ? b.∂ : NaN
-	return Dual(v, ∂)
-end
-
-function Base.max(a::Dual, b::Int)
-	v = max(a.v, b)
-	∂ = a.v > b ? a.∂ : a.v < b ? 0 : NaN
-	return Dual(v, ∂)
-end
-
-# Forward Differentitaion
-
-using ForwardDiff
-a = ForwardDiff.Dual(3,1);
-b = ForwardDiff.Dual(2,0);
-log(a*b + max(a,2))
-
-# Reverse - Accumulation
-
-using Zygote: gradient
-f(a, b) = log(a*b + max(a,2))
-gradient(f, 3.0, 2.0)
-```
 
 ---
 
