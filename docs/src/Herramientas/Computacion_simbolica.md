@@ -6,9 +6,6 @@
 
 ## Diferenciación automática
 
-CH 2.4 de Kochenderfer, M. J., & Wheeler, T. A. (2019). Algorithms for optimization. Mit Press.
-
-
 Las técnicas de diferenciación automática (AD) son algoritmos para evaluar numéricamente las derivadas de funciones especificadas por un programa computacional. La AD explota el hecho de que, independientemente de su complejidad, todo programa computacional ejecuta una secuencia de opraciones matemáticas elementales (suma, resta, multiplicación, división, etc.) y funciones elementales ($\exp$, $\log$, $\sin$, $\cos$, etc.). La AD aplica repetidamente la regla de la cadena para calcular, de forma automática, la derivada, de cualquier orden, de estas operaciones y funciones elementales.
 
 La AD es diferente a la diferenciación simbólica y a la diferenciación numérica. La diferenciación simbólica consiste en transformar el programa computacional en una expresión matemática. La diferenciación numérica, como ser diferencias finitas, requiere de una discretización, que conlleva un error de truncamiento y de cancelación. Además, estos dos últimos pueden ser ineficientes cuando el número de inputs es alto, y requiere de la aplicación de algoritmos de optimización basados en el gradiente.
@@ -89,6 +86,46 @@ Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
 ### Link recomendado:
 
 ["What is Automatic Differentiation?"](https://www.youtube.com/watch?v=wG_nF1awSSY)
+
+
+### Implementación en Julia
+
+
+```julia
+struct Dual
+	v
+	∂
+end
+
+Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
+Base.:*(a::Dual, b::Dual) = Dual(a.v * b.v, a.v*b.∂ + b.v*a.∂)
+Base.log(a::Dual) = Dual(log(a.v), a.∂/a.v)
+
+function Base.max(a::Dual, b::Dual)
+	v = max(a.v, b.v)
+	∂ = a.v > b.v ? a.∂ : a.v < b.v ? b.∂ : NaN
+	return Dual(v, ∂)
+end
+
+function Base.max(a::Dual, b::Int)
+	v = max(a.v, b)
+	∂ = a.v > b ? a.∂ : a.v < b ? 0 : NaN
+	return Dual(v, ∂)
+end
+
+# Forward Differentitaion
+
+using ForwardDiff
+a = ForwardDiff.Dual(3,1);
+b = ForwardDiff.Dual(2,0);
+log(a*b + max(a,2))
+
+# Reverse - Accumulation
+
+using Zygote: gradient
+f(a, b) = log(a*b + max(a,2))
+gradient(f, 3.0, 2.0)
+```
 
 ---
 
