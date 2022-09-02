@@ -87,6 +87,9 @@ radio(B::Box) = B.r
 function Box(c::Vector{Float64}, r::Float64)
     Box(c, fill(r, length(c)))
 end
+function Box(c::Vector{Float64}, r::Vector{Int64})
+    Box(c, 2.0 .* r)
+end
 
 Box([1.0, 1.0], 0.5)
 
@@ -108,11 +111,13 @@ puntos = [rand(2) for _ in 1:10]
 
 using Plots
 
+#=
 fig = plot()
 for p in puntos
     plot!(fig, ....)
 end
 fig
+=#
 
 # --
 
@@ -123,7 +128,7 @@ using LinearAlgebra
 
 D = Diagonal([1, 10, 100])
 
-struct Diagonal2{T} <: AbstractMatrix{T} 
+struct Diagonal2{T} <: AbstractMatrix{T}
     diag::Vector{T}
 end
 # Que tengo que implementar para la interfaz de array?
