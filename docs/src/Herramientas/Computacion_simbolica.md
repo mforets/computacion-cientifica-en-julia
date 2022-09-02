@@ -59,21 +59,20 @@ Por lo tanto, si pasamos un número dual a $f$, obtenemos $f$ y $f^{\prime}$ en 
 
 Con este procedimiento, para calcular el gradiente de una función que depende de $n$ variables, debemos recorrer $n$ veces el grafo. Por esto, la acumulación hacia adelante es recomendada cuando el número de outputs es mucho mayor que el número de inputs.
 
-Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
+Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ en $a=3$, $b=2$ con el método de acumulación hacia adelante:
 
-![Grafo computacional: Forward accumulation (Wiki)](./Figures/Wiki_ForwardAccumulationAutomaticDifferentiation.png)
-
-
-Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ para $a=3$, $b=2$ con el método de acumulación hacia adelante:
-
-1- Definimos el `struct` para representar los números duales
+1- Definimos el `struct` para representar los números duales:
 
 ```julia
 struct Dual
 	v
 	∂
 end
+```
 
+y algunas operaciones básicas necesarias:
+
+```julia
 Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
 
 Base.:*(a::Dual, b::Dual) = Dual(a.v * b.v, a.v*b.∂ + b.v*a.∂)
@@ -93,15 +92,18 @@ function Base.max(a::Dual, b::Int)
 end
 ```
 
-2- Computamos el gradiente en $a=3$, $b=2$ con el paquete `ForwardDiff.jl`:
+2- Computamos el gradiente en $a=3$, $b=2$ con la implementación de acumulación hacia adelante del paquete `ForwardDiff.jl`:
 
 ```julia
+
+f(a, b) = log(a*b + max(a,2))
+
 using ForwardDiff
 
 a = ForwardDiff.Dual(3,1);
 b = ForwardDiff.Dual(2,0);
 
-log(a*b + max(a,2)) # Forward Differentitaion
+f(a, b) # Forward Differentitaion
 ```
 
 ### Acumulación reversa (*Reverse accumulation*)
@@ -116,23 +118,45 @@ donde $\bar{c_i}$ es el "adjunto" de $c_i$. Para derivar $f$ respecto de $a$, se
 
 En el caso de la acumulación reversa, solo se debe hacer una corrida hacia adelante (en comparación con las $n$ corridas necesarias en la acumulación hacia adelante para computar un gradiente en dimensión $n$), pero se deben tener todas las en memoria la relación entre cada variable intermedia y su derivada respecto de los nodos "hijos" en el grafo, que fueron calculadas en el paso hacia adelante. Si el grafo es grande (número de inputs mucho mayor que de outputs), el requerimiento de memoria puede ser excesivo.
 
-Ejemplo:
-
-![Grafo computacional: Reverse accumulation](./Figures/ejemplo_backward_pass.png)
-
-Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
-
-![Grafo computacional: Reverse accumulation (Wiki)](./Figures/Wiki_ReverseaccumulationAD.png)
-
-Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ para $a=3$, $b=2$ con el método de acumulación reversa:
+Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ en $a=3$, $b=2$ con el método de acumulación reversa implementado en `Zygote.jl`:
 
 ```julia
 using Zygote: gradient
 
-f(a, b) = log(a*b + max(a,2))
-
 gradient(f, 3.0, 2.0) # Reverse Accumulation
 ```
+
+### Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
+
+1- Acumulación hacia adelante
+
+![Grafo computacional: Forward accumulation (Wiki)](./Figures/Wiki_ForwardAccumulationAutomaticDifferentiation.png)
+
+Ejemplo de cálculo de $\dfrac{\partial f}{\partial x_1}$ en $(x_1, x_2)=(\pi/2,1)$.
+
+```julia
+Base.sin(a::Dual) = Dual(sin(a.v), a.∂*cos(a.v))
+
+f(x1, x2) = x1*x2 + sin(x1)
+
+using ForwardDiff
+
+x1 = ForwardDiff.Dual(pi/2, 1);
+x2 = ForwardDiff.Dual(1, 0);
+
+f(x1, x2)
+```
+
+2- Acumulación reversa
+
+![Grafo computacional: Reverse accumulation (Wiki)](./Figures/Wiki_ReverseaccumulationAD.png)
+
+```julia
+using Zygote: gradient
+
+gradient(f, pi/2, 1.0)
+```
+
 
 ### Link recomendado:
 
