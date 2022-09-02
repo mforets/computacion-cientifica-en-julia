@@ -148,7 +148,25 @@ gradient(f, 3.0, 2.0) # Reverse Accumulation
 
 #### 5.1. Vector con entrada única
 
-Construir un tipo que se llama `Vector1Ent` que representa un vector con un único elemento no nulo en dimension $n$. `Vector1Ent` debe admitir el siguiente constructor: `Vector1Ent(6, i=2, n=10)` donde `1` es el elemento, `i` es el indice y `n` la dimension. Es decir en este caso representamos `[0, 6, 0, 0, 0, 0, 0, 0, 0, 0]`.
+Construir un tipo que se llama `Vector1E` que representa un vector con un único elemento no nulo en dimension $n$. `Vector1E` debe admitir el siguiente constructor: `Vector1E(6, i=2, n=10)` donde `6` es el elemento, `i` es el indice y `n` la dimension. Es decir en este caso se representa `[0, 6, 0, 0, 0, 0, 0, 0, 0, 0]` de manera simbólica.
 
-Se debe implementar la interfaz de `AbstractVector{N}` prestando particular atencion a la eficiencia. Se deben tambien implementar metodos para realizar operaciones algebraicas entre pares de `Vector1Ent` asi como tambien entre arrays densos (resp. esparsos) y `Vector1Ent`. Se debe implementar ademas las siguientes funciones: `norm`, `inner`. 
-Se debe tambien imprimir `Vector1Ent` de manera compacta.
+Se deben implementar (en todos los casos chequeando conformidad de dimensiones):
+
+- La interfaz de iteración.
+- La interfaz de vector abstracto.
+- Negación (`-`).
+- Aritmética (`+`, `-`) entre vectores densos y `Vector1E`, y también entre pares de `Vector1E`, que debe devolver un vector denso en cualquier caso.
+- Operaciones entre matrices densas y `Vector1E`.
+- Funciones de `LinearAlebra`: `norm`, `inner`.
+- Imprimir `Vector1E` de manera compacta.
+
+#### 5.2. Estructura de conjunto
+
+Se requiere implementar un struct llamado `CustomSet` que debe comportarse como un conjunto. Se definen a continuación una serie de test que la interfaz
+debe pasar.
+
+```julia
+using Test
+
+@test CustomSet([1, 2, 3, 1]) == CustomSet([1, 2, 3])
+```
