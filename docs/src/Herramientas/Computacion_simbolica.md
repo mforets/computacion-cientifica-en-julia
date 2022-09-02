@@ -162,11 +162,19 @@ Se deben implementar (en todos los casos chequeando conformidad de dimensiones):
 
 #### 5.2. Estructura de conjunto
 
-Se requiere implementar un struct llamado `CustomSet` que debe comportarse como un conjunto. Se definen a continuación una serie de test que la interfaz
-debe pasar.
+Se requiere implementar un struct llamado `CustomSet` que debe comportarse como un [conjunto](https://es.wikipedia.org/wiki/Conjunto) en el sentido ordinario. Se definen a continuación una serie de tests que el struct debe pasar.
 
 ```julia
 using Test
 
 @test CustomSet([1, 2, 3, 1]) == CustomSet([1, 2, 3])
+@test CustomSet([1, 2, 3]) ∩ CustomSet([1, 2]) == CustomSet([1, 2])
+@test CustomSet([1, 2, 3]) ∪ CustomSet([5, 6]) == CustomSet([1, 2, 3, 5, 6])
+@test 1 ∈ CustomSet([1, 2, 3])
+@test -1 ∉ CustomSet([1, 2, 3])
+@test length(CustomSet([1, 2, 3])) == 3
+@test push!(CustomSet([1, 2, 3]), 5) == CustomSet([1, 2, 3, 5])
+@test push!(CustomSet([1, 2, 3]), 1) == CustomSet([1, 2, 3])
+@test hasmethod(iterate, Tuple{CustomSet})
+@test sum(CustomSet([1, 2, 3])) == 6
 ```
