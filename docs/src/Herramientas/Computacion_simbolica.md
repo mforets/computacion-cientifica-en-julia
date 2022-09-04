@@ -157,7 +157,7 @@ Se deben implementar (en todos los casos chequeando conformidad de dimensiones):
 - Negación (`-`).
 - Aritmética (`+`, `-`) entre vectores densos y `Vector1E`, y también entre pares de `Vector1E`, que debe devolver un vector denso en cualquier caso.
 - Operaciones entre matrices densas y `Vector1E`.
-- Funciones de `LinearAlebra`: `norm`, `inner`.
+- Funciones de `LinearAlebra`: `norm`, `dot`.
 - Imprimir `Vector1E` de manera compacta.
 
 #### 5.2. Estructura de conjunto
