@@ -59,9 +59,7 @@ Por lo tanto, si pasamos un número dual a $f$, obtenemos $f$ y $f^{\prime}$ en 
 
 Con este procedimiento, para calcular el gradiente de una función que depende de $n$ variables, debemos recorrer $n$ veces el grafo. Por esto, la acumulación hacia adelante es recomendada cuando el número de outputs es mucho mayor que el número de inputs.
 
-Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ en $a=3$, $b=2$ con el método de acumulación hacia adelante:
-
-1- Definimos el `struct` para representar los números duales:
+Una forma de crear el tipo Dual en a partir de un `struct`:
 
 ```julia
 struct Dual
@@ -70,7 +68,7 @@ struct Dual
 end
 ```
 
-y algunas operaciones básicas necesarias:
+Luego, será necesario sobrecargar algunas funciones elementales, por ejemplo:
 
 ```julia
 Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
@@ -78,6 +76,10 @@ Base.:+(a::Dual, b::Dual) = Dual(a.v + b.v, a.∂ + b.∂)
 Base.:*(a::Dual, b::Dual) = Dual(a.v * b.v, a.v*b.∂ + b.v*a.∂)
 
 Base.log(a::Dual) = Dual(log(a.v), a.∂/a.v)
+
+Base.sin(a::Dual) = Dual(sin(a.v), a.∂*cos(a.v))
+
+Base.cos(a::Dual) = Dual(cos(a.v), - a.∂*sin(a.v))
 
 function Base.max(a::Dual, b::Dual)
 	v = max(a.v, b.v)
@@ -92,7 +94,11 @@ function Base.max(a::Dual, b::Int)
 end
 ```
 
-2- Computamos el gradiente en $a=3$, $b=2$ con la implementación de acumulación hacia adelante del paquete `ForwardDiff.jl`:
+Existen paquetes en Julia que ya tienen implementados los tipos Dual number y la acumulación hacia adelante, como ser `ForwardDiff`.
+
+### Ejemplo: 
+
+Calculemos la derivada de $f(a,b) = \ln(ab+\max(a, 2))$ respecto de `a` en $a=3$, $b=2$, con el paquete `ForwardDiff.jl`:
 
 ```julia
 
@@ -118,15 +124,23 @@ donde $\bar{c_i}$ es el "adjunto" de $c_i$. Para derivar $f$ respecto de $a$, se
 
 En el caso de la acumulación reversa, solo se debe hacer una corrida hacia adelante (en comparación con las $n$ corridas necesarias en la acumulación hacia adelante para computar un gradiente en dimensión $n$), pero se deben tener todas las en memoria la relación entre cada variable intermedia y su derivada respecto de los nodos "hijos" en el grafo, que fueron calculadas en el paso hacia adelante. Si el grafo es grande (número de inputs mucho mayor que de outputs), el requerimiento de memoria puede ser excesivo.
 
-Implementación en Julia de la diferenciación automática de $f(a,b) = \ln(ab+\max(a, 2))$ en $a=3$, $b=2$ con el método de acumulación reversa implementado en `Zygote.jl`:
+Al igual que con `ForwardDiff.jl`, también existen paquetes en Julia que tienen implementada la acumulación reversa, como ser `Zygote.jl`.
+
+### Ejemplo: 
+
+Calculemos las derivadas de $f(a,b) = \ln(ab+\max(a, 2))$ respecto de `a` y de `b` en $a=3$, $b=2$, con el método de acumulación reversa, usando el paquete `Zygote.jl`:
 
 ```julia
+f(a, b) = log(a*b + max(a,2))
+
 using Zygote: gradient
 
 gradient(f, 3.0, 2.0) # Reverse Accumulation
 ```
 
-### Ejemplo: $f(x_1,x_2)=x_1 x_2 + \sin x_1$
+### Ejemplo:
+
+Calculemos la derivada de $f(x_1,x_2)=x_1 x_2 + \sin x_1$ respecto de `x_1` y respecto de `x_2` en $(x_1, x_2)=(\pi/2,1)$, por el método 1) de acumulación hacia adelante y 2) de acumulación reversa.
 
 1- Acumulación hacia adelante
 
@@ -135,16 +149,17 @@ gradient(f, 3.0, 2.0) # Reverse Accumulation
 Ejemplo de cálculo de $\dfrac{\partial f}{\partial x_1}$ en $(x_1, x_2)=(\pi/2,1)$.
 
 ```julia
-Base.sin(a::Dual) = Dual(sin(a.v), a.∂*cos(a.v))
-
 f(x1, x2) = x1*x2 + sin(x1)
 
 using ForwardDiff
 
 x1 = ForwardDiff.Dual(pi/2, 1);
 x2 = ForwardDiff.Dual(1, 0);
+f(x1, x2) # derivada respecto de x1 en (x_1, x_2)=(\pi/2,1)
 
-f(x1, x2)
+x1 = ForwardDiff.Dual(pi/2, 0);
+x2 = ForwardDiff.Dual(1, 1);
+f(x1, x2) # derivada respecto de x2 en (x_1, x_2)=(\pi/2,1)
 ```
 
 2- Acumulación reversa
@@ -152,9 +167,11 @@ f(x1, x2)
 ![Grafo computacional: Reverse accumulation (Wiki)](./Figures/Wiki_ReverseaccumulationAD.png)
 
 ```julia
+f(x1, x2) = x1*x2 + sin(x1)
+
 using Zygote: gradient
 
-gradient(f, pi/2, 1.0)
+gradient(f, pi/2, 1.0) # calculo del gradiente
 ```
 
 
