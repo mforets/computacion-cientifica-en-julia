@@ -3,6 +3,7 @@ uuid = "e1c6c738-d63f-47f7-aac3-57ae89731a92"
 version = "0.1.1"
 
 [deps]
+Accessors = "7d9f7c33-5ae7-4f3b-8dc6-eff91059b697"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 DynamicPolynomials = "7c1d4256-1411-5781-91ec-d7bc3513ac07"
 LazySets = "b4f0291d-fe17-52bc-9479-3d1a343d9043"
