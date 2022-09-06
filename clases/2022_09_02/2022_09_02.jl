@@ -14,6 +14,10 @@ g(x::Float64) = 1
 # ------------------
 
 #=
+julia> using AbstractTrees
+
+julia> AbstractTrees.children(t::Type) = subtypes(t)
+
 julia> print_tree(AbstractVector)
 AbstractVector
 ├─ AbstractRange
