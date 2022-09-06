@@ -39,14 +39,14 @@ curso con preguntas de los docentes.
 |4 |23/08 26/08 |Fundamentos de Julia. Tipos de datos básicos. Reglas de alcance. Arreglos.|02/09|
 |5 |30/08 02/09 |Gestor de paquetes. Estructuras de datos. Funciones. Propuestas de proyecto.|09/09|
 |6 |06/09 09/09 |Mecanismos de evaluación. Metaprogramación.|-|
-|7 |13/09 16/09 |Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez.|-|
-|8 |20/09 23/09 |Programación genérica. Programación paralela. Anti-patrones.|-|
-|9 |27/09 30/09 |Librerías. Gráficos para publicaciones. Optimización. Modelado y simulaciones numéricas.|-|
-|10 |04/10 07/10 |Aprendizaje automático.|-|
-|11 |11/10 14/10 |Proyecto.|-|
-|12 |18/10 21/10 ||-|
-|13 |25/10 28/10 ||-|
-|14 |01/11 04/11 ||-|
+|7 |20/09 23/09 | Patrones de diseño. Generación de paquetes. Patrones para reutilización de código. Patrones para performance. Patrones de robustez. Programación genérica. Programación paralela. Anti-patrones.|-|
+|8 |27/09 30/09 |Librerías. Gráficos para publicaciones. Optimización. Modelado y simulaciones numéricas.|-|
+|9 |04/10 07/10 |Aprendizaje automático.|-|
+|10 |11/10 14/10 |Proyecto.|-|
+|11 |18/10 21/10 ||-|
+|12 |25/10 28/10 ||-|
+|13 |01/11 04/11 ||-|
+|14 | -- ||-|
 
 Notas:
 
