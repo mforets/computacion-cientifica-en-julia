@@ -5,9 +5,32 @@
 
 ---
 
-## Entregable 7 (borrador)
+## Entregable x (borrador)
 
-#### 7.1. Pretty printing
+#### x.1. Evaluación de polinomios por el método de Bernstein
+
+En este ejercicio revisitamos el problema del cálculo de coeficientes de Bernstein del Ejercicio 3.2, generalizando el cálculo a múltiples dimensiones. 
+Utilizamos multi-índices $i = (i_1, i_2, \ldots, i_n)$ para representar n-tuplas de números enteros no negativos (lo mismo con $l$). Sea $p: \mathbb{R}^n \to \mathbb{R}$ un polinomio multivariado (en $n$ variables). Dado un polinomio en su forma canónica (es decir en la base de potencias),
+
+```math
+p(x) = \sum_{i=0}^l a_i x^i,\qquad x = (x_1, \ldots, x_n),
+```
+nos interesa expresarlo en una base diferente llamada la *base de Bernstein*. Gráficos de los polinomios de la base de Bernstein, $B_i^l(x)$, se pueden apreciar en la Figura 3.1 de [Enclosure Methods for Systems of Polynomial Equations and Inequalities](https://d-nb.info/1028327854/34) de A. P. Smith (2012). En este ejercicio se debe implementar la ecuación (3.13) en dicha tesis, es decir, aquella que permite encontrar los coeficientes de $p$ en la base de Bernstein,
+
+```math
+p(x) = \sum_{i=0}^l b_i B_i^l(x),
+```
+donde $b_i$ son los coeficientes de Bernstein a determinar. Por conveniencia incluímos aquí la mencionada fórmula:
+
+```math
+b_i = \sum_{j=0}^i \dfrac{\binom{i}{j}}{\binom{l}{j}}(\bar{x} - \underline{x})^j \sum_{k=j}^l \binom{k}{j}\underline{x}^{k-j}a_k,\qquad 0 \leq i \leq l.
+```
+
+Sea $X = [\underline{x}_1, \bar{x}_1] \times \cdots \times [\underline{x}_n, \bar{x}_n] := [\underline{x}, \bar{x}]$ un dominio rectangular ("caja").
+
+Implementar una función `bernstein_coefficients(pol, X)` que recibe un polinomio definido en el paquete [`DynamicPolynomials.jl`](https://github.com/JuliaAlgebra/DynamicPolynomials.jl) y devuelve los coeficientes de Bernstein ($b_i$) asociados de grado $l$ (para $l$ suficientemente grande) en el dominio $X$.
+
+#### x.2. Pretty printing
 
 Considerar nuevamente el ejercicio [2.2 Traducción de ARN](https://mforets.github.io/computacion-cientifica-en-julia/dev/Herramientas/Primeros_pasos_en_Julia/#.2.-Traducci%C3%B3n-de-ARN) e implementar las funciones necesarias para que las cadenas proteicas se impriman de manera más sencilla pero sin modificar el struct.
 
@@ -23,16 +46,3 @@ CadenaProteica("MetProLysGly")
 julia> traducir(ARN("GCAAGAGAUAAUUGU"))
 CadenaProteica("AlaArgAspAsnCys")
 ```
-
-#### 7.2. Dibujo de grafos con el método del equilibrio
-
-Existen diversas técnicas para dibujar [grafos](https://es.wikipedia.org/wiki/Grafo) de manera automática, es decir, dado un grafo $G = (V, E)$ donde $V$ es el conjunto de vértices y $E$ es el conjunto de aristas, determinar posiciones $(x_i, y_i)$ para cada $i = 1, \ldots, |V|$ de forma que el dibujo resultante muestre la simetría subyacente en el grafo. Entre ellas encontramos métodos basado en resortes (force-directed algorithms), que tienen las siguientes características generales:
-
-- Cada nodo se asocia con un masa puntual.
-- Cada arista se asocia con un resorte.
-
-Mediante la asociación de las componentes del grafo con un sistema físico, se establece la posición final de los nodos como aquella que minimiza la energía total del sistema.
-
-En este ejercicio se deberá implementar el algoritmo que se describe en el artículo de Kamada, Tomihisa, and Satoru Kawai, "An algorithm for drawing general undirected graphs." Information processing letters 31.1 (1989): 7-15.
-
-La función `calcular_coordenadas(V, E)` debe aceptar un arreglo `V` que define el conjunto de nodos y `E` que define el conjunto de aristas, y debe devolver un vector de tuplas donde cada tupla corresponde a la coordenada `x` e `y` de cada nodo. Ejemplos de entrada son `V = 1:4`, `E = [(1, 2), (2, 3), (3, 4), (4, 1)]`, que define un cuadrado, y `V = 1:6`, `E = [(1, 2), (1, 5), (2, 5), (2, 4), (3, 4), (3, 6), (4, 6)]` según la Fig. 2 del artículo citado.
