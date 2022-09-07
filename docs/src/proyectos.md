@@ -21,3 +21,7 @@ En este proyecto se plantea desarrollar un módulo que permita realizar cálculo
 ## Idea de proyecto: Operaciones con conjuntos no convexos para CPS
 
 La propuesta de este proyecto es contribuir al desarrollo de la librería LazySets con funcionalidades necesarias para trabajar con conjuntos no convexos [1](https://github.com/JuliaReach/LazySets.jl/issues/3047), [2](https://github.com/JuliaReach/LazySets.jl/issues/1895). Se prestará particular atención a métodos necesarios para aplicar LazySets a problemas de control y sistemas ciber-physicos en [3](https://github.com/dionysos-dev/Dionysos.jl), [4](https://github.com/dionysos-dev/Dionysos.jl/issues/171). Como conocimiento previo se requiere [5](https://proceedings.juliacon.org/papers/10.21105/jcon.00097).
+
+## Idea de proyecto: Algoritmo de K-caminos con loops
+
+La propuesta de este proyecto es agregar un algoritmo utilizando la interfaz de [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl/) que implemente el método de Eppstein para encontrar los K caminos más cortos en un grafo dirigido con pesos. El algoritmo fue publicado en [1](https://www.ics.uci.edu/~eppstein/pubs/Epp-SJC-98.pdf); ver también [2](https://codeforces.com/blog/entry/102085) para un enfoque más incremental en la metodología.
