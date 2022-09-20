@@ -31,7 +31,17 @@ SimpleGraph{Int64}
 
 # Creacion de paquetes
 
+# Ejemplos 
+# https://github.com/JuliaReach/ARCH2022_AFF_RE/blob/master/startup.jl
+# https://github.com/ONSAS/StructuralDynamicsODESolvers.jl
+
+# main()
+
+# Usar const para variables globales.
+# 
 # Documentacion, Tests
+
+# Infiltrator.jl
 
 # Dependencias
 

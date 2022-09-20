@@ -1,0 +1,4 @@
+name = "PaqueteA"
+uuid = "9523f628-1f1f-4564-ac74-3915d6ad5591"
+authors = ["Marcelo Forets <mforets@gmail.com>"]
+version = "0.1.0"

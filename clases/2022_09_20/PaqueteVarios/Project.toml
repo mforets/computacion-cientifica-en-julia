@@ -1,0 +1,4 @@
+[deps]
+PaqueteA = "9523f628-1f1f-4564-ac74-3915d6ad5591"
+PaqueteB = "c0d396ca-393a-4937-9f17-8f02a77b89d5"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
