@@ -1,0 +1,4 @@
+name = "ConvexSets"
+uuid = "a7443bf2-d76b-4fa0-8eac-29142cbe7bc7"
+authors = ["Marcelo Forets <mforets@gmail.com>"]
+version = "0.1.0"
