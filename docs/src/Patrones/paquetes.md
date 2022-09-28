@@ -8,8 +8,8 @@
 
 ---
 
-## Entregable 7 (borrador)
+## Entregable 7
 
-#### 7.1. Generación de paquete en GitHub
+#### 7.1. Preparación del proyecto
 
-Genere un nuevo repositorio en GitHub con la implementación de su solución del ["Ejercicio 6.1"](https://mforets.github.io/computacion-cientifica-en-julia/dev/Fundamentos/Arreglos/#.1.-Dibujo-de-grafos-con-el-m%C3%A9todo-del-equilibrio). Agregue documentación y tests.
+Genere un nuevo repositorio en GitHub (u otro servicio) que utilizará para su proyecto de curso. El proyecto puede ser público o privado (en ese último caso debe dar accesso a los docentes). Deberá agregar un esqueleto del proyecto como recomendado en clase, asi como también esqueleto para documentación y tests. Puede agregar dependencias que considere necesarias.
