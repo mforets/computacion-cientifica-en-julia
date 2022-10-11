@@ -5,7 +5,7 @@
 |Federico Bliman|Patrones de fallas en AEGs|
 |Rodrigo Perdomo|x|
 |Joaquin Viera|x|
-|Mauricio Vanzulli|x|
+|Mauricio Vanzulli|Identifación de propiedades materiales|
 |Daniel Gomez|x|
 |Gerardo Vitale|Modelo numérico de un Muro Trombe|
 |Juan Pedro Tarigo|x|
