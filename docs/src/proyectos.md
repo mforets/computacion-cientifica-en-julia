@@ -4,7 +4,7 @@
 |------|------------------|----|
 |Federico Bliman|Problemas de SLAM|https://github.com/fbliman/SLAM_test.jl|
 |Daniel Gomez|Localización de fallas en sistemas eléctricos de potencia|https://github.com/rpp396/Powerdistancer/|
-|Federico Licandro||https://github.com/FedericoLicandro/transferencia_interactivo|
+|Federico Licandro|Problemas de transferencia de calor|https://github.com/FedericoLicandro/transferencia_interactivo|
 |Rodrigo Perdomo|Localización de fallas en sistemas eléctricos de potencia|https://github.com/rpp396/Powerdistancer/|
 |Juan Pedro Tarigo|Predictability en sistemas de Mackey-Glass|https://github.com/jTarigo/MGpredictability|
 |Mauricio Vanzulli|Problemas inversos de identificación de materiales|https://github.com/mvanzulli/Apolo.jl|
