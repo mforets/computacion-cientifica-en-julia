@@ -1,14 +1,14 @@
 # Proyectos Curso 2022
 
-|Nombre|Título (tentativo)|
-|------|------------------|
-|Federico Bliman|Patrones de fallas en AEGs|
-|Rodrigo Perdomo|x|
-|Joaquin Viera|x|
-|Mauricio Vanzulli|x|
-|Daniel Gomez|x|
-|Gerardo Vitale|Modelo numérico de un Muro Trombe|
-|Juan Pedro Tarigo|x|
+|Nombre|Título|Link|
+|------|------------------|----|
+|Federico Bliman|x||
+|Daniel Gomez|Localización de fallas en sistemas eléctricos de potencia|https://github.com/rpp396/Powerdistancer/|
+|Federico Licandro|||
+|Rodrigo Perdomo|Localización de fallas en sistemas eléctricos de potencia|https://github.com/rpp396/Powerdistancer/|
+|Juan Pedro Tarigo|x||
+|Mauricio Vanzulli|Problemas inversos de identificación de materiales|https://github.com/mvanzulli/Apolo.jl|
+|Joaquin Viera|Problemas de no linealidad material|https://github.com/JoaquinViera/materialNonLinearity.jl|
 
 ## Idea de proyecto: Expansión de Bernstein implícita
 
