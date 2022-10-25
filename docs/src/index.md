@@ -48,7 +48,7 @@ curso con preguntas de los docentes.
 |12 |01/11 04/11 |Proyecto. |-|
 |13 |07/11 11/11 |Proyecto. |-|
 |14 |14/11 18/11 |Proyecto. |-|
-|15 |21/11 25/11 |Proyecto. |Entrega del proyecto: 25/11|
+|15 |21/11 25/11 |Proyecto. |Defensa del proyecto: 25/11 en FING|
 
 Notas:
 
