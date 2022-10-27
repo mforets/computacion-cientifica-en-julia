@@ -44,10 +44,11 @@ curso con preguntas de los docentes.
 |X  |04/10 07/10 |X |-|
 |9  |11/10 14/10 |Patrones de robustez. Optimización. Modelado y simulaciones numéricas. |-|
 |10 |18/10 21/10 |Aprendizaje automático. Programación paralela. Gráficos para publicaciones. |Última clase: 21/10|
-|11 |25/10 28/10 |Proyecto. |-|
+|11 |25/10 28/10 |Cierre ejemplo _Predation_. Proyecto. |Última clase: 25/10|
 |12 |01/11 04/11 |Proyecto. |-|
 |13 |07/11 11/11 |Proyecto. |-|
-|14 |14/11 18/11 |Proyecto. |Entrega del proyecto: 18/11|
+|14 |14/11 18/11 |Proyecto. |-|
+|15 |21/11 25/11 |Proyecto. |Defensa del proyecto: 25/11 en FING|
 
 Notas:
 
