@@ -55,6 +55,14 @@ Notas:
 - La columna de semana se refiere al numero de semanas transcurridas respecto delinicio del curso.
 - El cronograma es tentativo y lo iremos actualizando con el correr del curso.
 
+## Horarios
+
+Horarios del curso 2023 (1er semestre)
+
+- 18:30 a 20 teóricos jueves
+- 18:30 a 20 teóricos viernes
+- 20 a 21:30 práctico viernes
+
 ## Bibliografía
 
 A continuación se lista la bibliografía principal. Por otro lado, cada sección incluye referencias específicas ya sea a textos, a páginas web o a paquetes de Julia.
