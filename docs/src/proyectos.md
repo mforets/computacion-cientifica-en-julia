@@ -1,3 +1,9 @@
+# Proyectos Curso 2023
+
+|Nombre|Título|Link|
+|------|------------------|----|
+||||
+
 # Proyectos Curso 2022
 
 |Nombre|Título|Link|
@@ -9,15 +15,3 @@
 |Juan Pedro Tarigo|Predictability en sistemas de Mackey-Glass|[MGpredictability](https://github.com/jTarigo/MGpredictability)|
 |Mauricio Vanzulli|Identifación de propiedades materiales|[Apolo.jl](https://github.com/mvanzulli/Apolo.jl)|
 |Joaquin Viera|Problemas de no linealidad material|[materialNonLinearity.jl](https://github.com/JoaquinViera/materialNonLinearity.jl)|
-
-## Problemas de SLAM
-
-## Localización de fallas en sistemas eléctricos de potencia
-
-## Problemas de transferencia de calor
-
-## Predictability en sistemas de Mackey-Glass
-
-## Identifación de propiedades materiales
-
-## Problemas de no linealidad material
