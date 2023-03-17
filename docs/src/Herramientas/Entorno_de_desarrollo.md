@@ -327,58 +327,40 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 ## Entregable 1
 
-#### 1.1. Comandos de git
+!!! warning "Formato de entrega"
+    Se debe entregar un archivo .ZIP llamado `Entregable_1` que contenga un archivo de Julia (`.jl`) por cada ejercicio `Ejercicio1.jl`, `Ejercicio2.jl`, etc.
 
-(a) Ejecutar los siguientes juegos de comandos y comparar los resultados de cada uno. En particular, ¿Cuál/es de los siguientes conjuntos de comandos crean una nueva `branch` y hacen un `commit` a dicha `branch`?
+#### 1.
 
-```bash
-$ git branch new-branch
-$ git add file.txt
-$ git commit
-```
+Escribir un programa que imprima en pantalla:
 
-```bash
-$ git add file.txt
-$ git branch new-branch
-$ git checkout new-branch
-$ git commit
-```
+- Los enteros de 1 hasta 100.
+- Los multiplos de 2 entre 1 y 100.
+- Los multiplos de 5 entre 1024 y 1200.
 
-```bash
-$ git checkout -b new-branch
-$ git add file.txt
-$ git commit
-```
+#### 2. 
 
-```bash
-$ git checkout new-branch
-$ git add file.txt
-$ git commit
-```
+Alberto vende cursos de programación online y los promociona con un gasto fijo de U$S200 en publicidad. Por cada alumno que compra un curso Alberto gana U$S12. Escribir una función `f(x)` que modele los ingresos de alberto si `x` es la cantidad de alumnos que compran su curso.
 
-(b) Repetir la pregunta anterior utilizando la interfaz de git que viene incorporada en VSCode. Recomendamos probar la extensión llamada GitLens.
+#### 3.
 
-#### 1.2. Creación de un repositorio
-
-Crear un nuevo repositorio con su usuario en github (si no tienen, crearse uno). Aquellos que asi lo deseen pueden usar gitlab (`gitlab.com`) o la instancia de fing (`gitlab.fing.edu.uy`). Sugerimos que el repo se llame `ccj`.
-
-(a) Hacer un commit con el archivo `hola.jl` generado en el principio de esta sección.
-
-(b) Crear una carpeta de nombre `Entregable_1` que contenga el archivo `Entregable_1.jl` con el siguiente contenido:
+Escribir un programa que dada una cadena de caracteres (`String`) imprima todas las combinaciones posibles de tres letras. Por ejemplo para la palabra "sol" el output seria:
 
 ```julia
-module Entregable_1
-    const CI = "cedula-sin-puntos-ni-guion"
-
-    doble(x) = 2x
-
-    export doble
-end
+julia> combinaciones("sol")
+6-element Vector{String}:
+ "sol"
+ "slo"
+ "osl"
+ "ols"
+ "lso"
+ "los"
 ```
-cambiando el contenido de la constante `CI` por su número de cédula.
 
-(c) Zippear la carpeta `Entregable_1` y subirlo a la actividad correspondiente en Eva como se indicará en clase. Si aun no tiene acceso a Eva, enviar el entregable a los docentes del curso por email.
+#### 4. 
 
-#### 1.3. Creación de un pull request en Github
+Dado un angulo $\theta$ escribir su respectiva matriz de rotación (2x2). Calcular la imagen del vector `[1, 0]` cuando teta toma valores entre [0, pi/2, pi, 1]`.
 
-Hacer un fork del repositorio con las notas del curso (`github.com/mforets/computacion-cientifica-en-julia`) y realizar un commit agregando su nombre en la pagina de `Proyecto`. Si tiene un titulo tentativo para su trabajo, incluirlo, de lo contrario dejar una cruz (`x`) en la columna correspondiente.
+#### 5. 
+
+Al comienzo de 2023 Juana deposita $C$ pesos en un banco con una taza de interés $r$ (entre $0$ y $1$).La capitalizacion es continua. Escribir una funcion $g(C,r,x)$ que modele el interés. ¿Si $C = 100000$ y $r = 0.05$, cuánto es el capital de Juana pasados 18 meses?
