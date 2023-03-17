@@ -340,7 +340,7 @@ Escribir un programa que imprima en pantalla:
 
 #### 2. 
 
-Alberto vende cursos de programación online y los promociona con un gasto fijo de U$S200 en publicidad. Por cada alumno que compra un curso Alberto gana U$S12. Escribir una función `f(x)` que modele los ingresos de alberto si `x` es la cantidad de alumnos que compran su curso.
+Alberto vende cursos de programación online y los promociona con un gasto fijo de 200usd en publicidad. Por cada alumno que compra un curso Alberto gana U$S12. Escribir una función `f(x)` que modele los ingresos de alberto si `x` es la cantidad de alumnos que compran su curso.
 
 #### 3.
 
