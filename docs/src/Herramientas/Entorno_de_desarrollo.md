@@ -327,8 +327,8 @@ Una lista de los comandos básicos de git se puede encontrar en [este link](http
 
 ## Entregable 1
 
-!!! warning "Formato de entrega"
-    Se debe entregar un archivo .ZIP llamado `Entregable_1` que contenga un archivo de Julia (`.jl`) por cada ejercicio `Ejercicio1.jl`, `Ejercicio2.jl`, etc.
+!!! warning "Entrega"
+    Se debe entregar un archivo .ZIP llamado `Entregable_1` que contenga un archivo de Julia (`.jl`) por cada ejercicio `Ejercicio1.jl`, `Ejercicio2.jl`, etc. Fecha límite de entrega: Jueves 23 de marzo.
 
 #### 1.
 
