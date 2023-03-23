@@ -24,8 +24,8 @@ Corroborar con el resultado obtenido en la parte 1c.
 
 Se dan las coordenadas de los extremos (inferior izquierdo y superior derecho) de dos rectangulos en un plano.
 
-Escribir una funcion `area(A, B, C, D)` tal que devuelve el area total cubierta por los dos rectangulos
-definidos por `(A, B)` y `(C, D)` respectivamente.
+Escribir una funcion `area(a, b, c, d)` tal que devuelve el area total cubierta por los dos rectangulos
+definidos por `(a, b)` y `(c, d)` respectivamente.
 
 Por ejemplo,
 
