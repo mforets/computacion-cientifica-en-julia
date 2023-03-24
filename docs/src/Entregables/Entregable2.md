@@ -6,13 +6,13 @@
     
 ### 1. 
 
-a) Crear dos matrices aleatorias $A$ y $B$ de tamaño 3x3 con números enteros del 1 al 10.
+a) Crear dos matrices aleatorias $A$ y $B$ de tamaño 3x3 con números enteros del 1 al 10. La distribución debe ser uniforme entre 0 y 1.
 Luego sumarlas para producir una matriz $C$.
 
-b) Crear dos matrices aleatorias $D$ y $E$ de tamaño 3x2 y 2x3 respectivamente, con números enteros del 1 al 10.
+b) Crear dos matrices aleatorias $D$ y $E$ de tamaño 3x2 y 2x3 respectivamente, con números enteros del 1 al 10. La distribución debe ser normal de media 0 y varianza 1.
 Luego multiplicarlas para producir una matriz $F$.
 
-c) Crear una matriz aleatoria $G$ con de tamaño 3x4 con números enteros del 1 al 10. Calcular su matriz traspuesta $H$ utilizando la función `transpose` de Julia.
+c) Crear una matriz aleatoria $G$ con de tamaño 3x4 con números enteros del 1 al 10. La distribución debe ser normal de media 5 y varianza 0.5. Calcular su matriz traspuesta $H$ utilizando la función `transpose` de Julia.
 
 
 ### 2. 
