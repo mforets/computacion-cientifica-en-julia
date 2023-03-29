@@ -6,14 +6,12 @@
     
 ### 1. 
 
-a) Crear dos matrices aleatorias $A$ y $B$ de tamaño 3x3 con números enteros del 1 al 10. La distribución debe ser uniforme entre 0 y 1.
+a) Crear dos matrices aleatorias $A$ y $B$ de tamaño 3x3 con números enteros del 1 al 10. La distribución debe ser uniforme.
 Luego sumarlas para producir una matriz $C$.
 
-b) Crear dos matrices aleatorias $D$ y $E$ de tamaño 3x2 y 2x3 respectivamente, con números enteros del 1 al 10. La distribución debe ser normal de media 0 y varianza 1.
-Luego multiplicarlas para producir una matriz $F$.
+b) Crear dos matrices aleatorias $D$ y $E$ de tamaño 3x2 y 2x3 respectivamente, con números de punto flotante del 1 al 10. Efectuar muestreo por descarte (rejection sampling) de una distribución normal de media 0 y varianza 1. Luego multiplicarlas para producir una matriz $F$.
 
-c) Crear una matriz aleatoria $G$ con de tamaño 3x4 con números enteros del 1 al 10. La distribución debe ser normal de media 5 y varianza 0.5. Calcular su matriz traspuesta $H$ utilizando la función `transpose` de Julia.
-
+c) Crear una matriz aleatoria $G$ con de tamaño 3x4 con números de punto flotante del 1 al 10. Para el muestreo usar la misma tecnica que en el parte anterior, pero con una normal de media 5 y varianza 1. Calcular su matriz traspuesta $H$ utilizando la función `transpose` de Julia.
 
 ### 2. 
 
