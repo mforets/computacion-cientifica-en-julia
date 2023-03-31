@@ -74,11 +74,10 @@ end
 
 pertence(p, B) = p ∈ B
 
-p = 500
+p = 1000
 Nint = contar_int(H, B, p)
 
 L = 2 * radius_hyperrectangle(H)[1]
 h = L / p
-Nint * h^2
-
-A
+@show Nint * h^2
+@show A
