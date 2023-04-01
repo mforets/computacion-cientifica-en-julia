@@ -19,7 +19,7 @@ Compara su resultado por el obtenido mediante la funcion `norm` de `LinearAlgebr
 
 #### 3.
 
-Generalizar el método desarrollado en clase para obtener una cota inferior del área interior de un polígono convexo. 
+Generalizar el método desarrollado en clase para obtener una cota inferior del área interior de un polígono convexo cualquiera. 
 Sugerencia: para representar dicho polígono, utilizar `VPolygon` de LazySets.
 
 #### 4.
