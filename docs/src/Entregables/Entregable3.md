@@ -9,7 +9,7 @@ La traza de una mariz cuadrada de define como la suma de sus elementos diagonale
 
 #### 2.
 
-La norma matricial inducida por una `p`-norma ($1 \leq p \leq \infty`) en vectores, para el caso `p = 1`, adquiere la forma:
+La norma matricial inducida por una $p$-norma ($1 \leq p \leq \infty$) en vectores, para el caso $p = 1$, adquiere la forma:
 
 $$
 \Vert A \Vert_1 = \max_{1 \leq j \leq n} \sum_{i=1}^n \vert a_{ij} \vert
