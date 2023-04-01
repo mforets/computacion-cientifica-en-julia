@@ -13,7 +13,7 @@ La norma matricial inducida por una $p$-norma ($1 \leq p \leq \infty$) en vector
 
 $\Vert A \Vert_1 = \max_{1 \leq j \leq n} \sum_{i=1}^n \vert a_{ij} \vert$
 
-Implementar una funcion `norma1(A)` que implementa la formula anterior.
+Escribir una funcion `norma1(A)` que implementa la formula anterior.
 
 #### 3.
 
