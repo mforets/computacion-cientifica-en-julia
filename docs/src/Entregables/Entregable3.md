@@ -17,7 +17,3 @@ Sugerencia: utilizar la fórmula del área de Gauss.
 Comparar la estimación obtenida en el ejercicio 1 con el resultado exacto.
 
 Suponiendo que las coordenadas del polígono son números racionales, ¿puede modificar su algoritmo para que el resultado del cálculo del área sea un número racional?
-
-#### 3.
-
-Idear e implementar un método para obtener una cota superior del área del círculo.
