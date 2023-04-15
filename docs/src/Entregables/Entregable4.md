@@ -46,7 +46,10 @@ sino que opere sobre la misma matriz de entrada. LLamar a dichar funcion `rotar!
 
 ### 4.
 
-Se aplicará el resultado del problema 2 (o 3) a una imagen. Para ello, obtener una imagen cualquiera (puede ser desde el celular), cargarla y rotarla.
+Se adaptará el algoritmo desarrollado en el problema 2 (o 3) para rotar una imagen de verdad.
+Para ello, obtener una imagen cualquiera (puede ser desde el celular), cargarla y rotarla.
+El resultado del ejercicio es entonces implementar un nuevo metodo `rotar(path::String)::String` que recibe el path de una imagen, la rota, y la guarda
+en un archivo del mismo nombre que `path` pero agregando `_rotada`.
 
 Código de ejemplo:
 
@@ -67,4 +70,3 @@ imshow(img)
 # Guardar la imagen.
 save("resultado.png", img)
 ```
-
