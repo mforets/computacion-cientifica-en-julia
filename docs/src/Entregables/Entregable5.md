@@ -122,7 +122,7 @@ Se sugiere seguir el siguiente pseudocódigo de alto nivel para la implementaci�
 
 Este pseudocódigo  describe los pasos principales del algoritmo de detección de esquinas de Harris, desde cargar la imagen de entrada hasta extraer las coordenadas de las esquinas detectadas. Esta es una implementación básica y se pueden aplicar optimizaciones de rendimiento para mejorar la eficiencia del algoritmo en la práctica.
 
-A continuación se proveen algunas sugerencias para los pasos del psedo-código:
+A continuación se proveen algunas sugerencias para los pasos del pseudo-código:
 
 1. Cargar la imagen de entrada y convertirla a escala de grises. Ver Ejercicio 1.
 
