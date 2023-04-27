@@ -84,7 +84,6 @@ Salida esperada:
 #### 1. Conversion a escala de grises
 
 Escribir una función que es capaz de recibir una imagen de entrada y convertirla a escala de grises.
-Observar que la conversión se comporta como esperara. 
 
 Sugerencia 1: utilizar la biblioteca Images de Julia para leer la imagen en formato PNG. Ver Entregable 4 que contiene código de ejemplo.
 
