@@ -22,7 +22,8 @@ makedocs(
         "Entregables" => Any["Entregable 1" => "Entregables/Entregable1.md",
                              "Entregable 2" => "Entregables/Entregable2.md",
                              "Entregable 3" => "Entregables/Entregable3.md",
-                             "Entregable 4" => "Entregables/Entregable4.md"],
+                             "Entregable 4" => "Entregables/Entregable4.md",
+                             "Entregable 5" => "Entregables/Entregable5.md"],
         "Herramientas básicas" => Any[
             "Alcance del curso" => "Herramientas/Alcance_del_curso.md",
             "Entorno de desarrollo" => "Herramientas/Entorno_de_desarrollo.md",
