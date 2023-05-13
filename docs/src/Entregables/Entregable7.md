@@ -5,18 +5,10 @@
 
 ## Parte A.
 
-### Simulación del ta-te-ti
+### 
 
-Escribir un programa que permita jugar al juego del ta-te-ti.
 
 ## Parte B.
 
-### Torre de Hanoi.
+### 
 
-#### Part 1.
-
-Implementar la función `solve` para el juego de Hanoi que se encuentra en los notebooks de ejemplo de Pluto.jl. Debe funcionar para 3 discos.
-
-#### Parte 2.
-
-Generalizar la solución anterior para un número arbitrario de discos.
