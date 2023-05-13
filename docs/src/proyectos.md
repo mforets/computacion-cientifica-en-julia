@@ -3,6 +3,10 @@
 |Nombre|Título|Link|
 |------|------------------|----|
 ||||
+||||
+||||
+
+Fecha de defensas (tentativa): Jueves 27/07 y Viernes 28/07
 
 # Proyectos Curso 2022
 
