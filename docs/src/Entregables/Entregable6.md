@@ -1,7 +1,7 @@
 # Entregable 6
 
 !!! warning "Entrega"
-    Se debe entregar un archivo .ZIP llamado `Entregable_6` que contenga un archivo de Julia (`.jl`) por cada ejercicio `Ejercicio1.jl`, `Ejercicio2.jl`, etc. Deben entregar solamente *una* parte. Fecha límite de entrega: Viernes 19 de mayo.
+    Se debe entregar un archivo .ZIP llamado `Entregable_6` que contenga un archivo de Julia (`.jl`) por cada ejercicio `Ejercicio1.jl`, `Ejercicio2.jl`, etc. Deben entregar solamente *una* parte. Fecha límite de entrega: Martes 23 de mayo.
 
 ## Parte A.
 
